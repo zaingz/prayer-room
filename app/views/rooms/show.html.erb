@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room.name %>
+</p>
+
+<p>
+  <strong>Street:</strong>
+  <%= @room.street %>
+</p>
+
+<p>
+  <strong>Floor:</strong>
+  <%= @room.floor %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @room.city %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @room.country %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @room.description %>
+</p>
+
+<p>
+  <strong>Direction:</strong>
+  <%= @room.direction %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @room.link %>
+</p>
+
+<%= link_to 'Edit', edit_room_path(@room) %> |
+<%= link_to 'Back', rooms_path %>
+<%= link_to 'Report', report_path %>

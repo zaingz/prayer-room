@@ -1,0 +1,10 @@
+<h4>Prayer area no longer exist? Help us update this entry</h4>
+<%= form_tag( action: "creport") do%>
+  <%= radio_button_tag(:status, "0") %>
+  <%= label_tag(:status_child, "Prayer room no longer exist") %><br>
+  <%= radio_button_tag(:status, "1") %>
+  <%= label_tag(:status_adult, "Prayer room under renovation") %><br>
+  <%= radio_button_tag(:status, "2") %>
+  <%= label_tag(:status_adult, "Inappropiate content") %><br>
+  <%= submit_tag %>
+<% end %>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PrayWhere</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% if user_signed_in? %>
+	<h5 style="text-align: center;">Welcome <%= current_user.username %>  <%= link_to "SignOut" , destroy_user_session_path , method: :delete%></h5>
+<% end %>
+<%= yield %>
+
+</body>
+</html>

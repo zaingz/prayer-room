@@ -1,0 +1,18 @@
+<%= form_for(@user) do |f| %>
+  <%= f.label(:username , "User Name") %>
+  <%= f.text_field(:username) %>
+  <br>
+  <%= f.label(:role , "Role") %>
+  <%= f.text_field(:role) %>
+  <br>
+  <%= f.label(:status , "Status") %>
+  <%= f.text_field(:status) %>
+  <br>
+  <%= f.label(:ban , "Banned") %>
+  <%= f.radio_button(:ban, true) %>
+  <%= f.label(:ban_true, "Yes") %>
+  <%= f.radio_button(:ban, false) %>
+  <%= f.label(:ban_false, "No") %>
+  <br>
+  <%= f.submit %>
+<% end %>
