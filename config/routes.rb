@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   delete 'user/:id' => 'admin#user_del' ,:as => 'destroy_user'
   get 'admin/user/edit/:id' => 'admin#user_edit' ,:as => 'edit_user'
   patch 'admin/user/update/:id' => 'admin#user_update' , :as => 'user'
+  get 'admin/room' => 'admin#rooms' ,:as => 'admin_rooms'
+
+  get 'admin/room/approve/:id' => 'admin#approve_room' , :as => 'approve'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
