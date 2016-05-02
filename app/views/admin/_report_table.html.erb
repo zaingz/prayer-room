@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>TITLE/BUILDING NAME</th>
+      <th>SUBMITTED BY</th>
+      <th>DATE</th>
+      <th>STATUS</th>
+      <th>VERSION</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= report.room.name %></td>
+        <td><%= report.room.user.username %></td>
+        <td><%= report.room.created_at.to_date %></td>
+        <td><%= report.room.status %></td>
+        <td><%= report.room.version %></td>
+        <td><%= link_to 'EDIT' , room_path(report.room) , method: :PUT %></td>
+        <td><%= link_to 'DELETE' , room_path(report.room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
+        <td><%= link_to 'VIEW' , room_path(report.room) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

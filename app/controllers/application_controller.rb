@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
 	  			format.html { redirect_to rooms_path, notice: 'You are not admin!.' }
 	  		end
 	  	end
+	else
+		redirect_to rooms_path, notice: 'Please signin first!.' 
 	end
   end
 end

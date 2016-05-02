@@ -11,9 +11,15 @@ Rails.application.routes.draw do
   delete 'user/:id' => 'admin#user_del' ,:as => 'destroy_user'
   get 'admin/user/edit/:id' => 'admin#user_edit' ,:as => 'edit_user'
   patch 'admin/user/update/:id' => 'admin#user_update' , :as => 'user'
-  get 'admin/room' => 'admin#rooms' ,:as => 'admin_rooms'
+  get 'admin/room/pending' => 'admin#rooms' ,:as => 'admin_rooms'
 
   get 'admin/room/approve/:id' => 'admin#approve_room' , :as => 'approve'
+  get 'admin/room/reject/:id' => 'admin#reject_room' , :as => 'reject'
+  get 'admin/room' => 'admin#room_entries' ,:as => 'admin_room_entries'
+  get 'admin/reports' => 'admin#reports'
+
+  get 'room/search' => 'search#search_by_name'
+  get 'room/search_all' => 'search#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

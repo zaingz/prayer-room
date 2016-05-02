@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430094427) do
+ActiveRecord::Schema.define(version: 20160502121604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checkins", force: :cascade do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string   "image"
@@ -40,11 +48,12 @@ ActiveRecord::Schema.define(version: 20160430094427) do
     t.text     "description"
     t.text     "direction"
     t.string   "link"
-    t.integer  "checkin",     default: 0
     t.integer  "status",      default: 0
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "user_id"
+    t.integer  "version",     default: 0
+    t.integer  "voteup",      default: 0
   end
 
   create_table "users", force: :cascade do |t|

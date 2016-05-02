@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   enum status: [:suspended , :active]
 	has_many :rooms
   has_many :reports, :as => 'reporter'
-
+  has_many :checkins
 
 	def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

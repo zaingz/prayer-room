@@ -7,7 +7,7 @@
       <th>DATE</th>
       <th>STATUS</th>
       <th>VERSION</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -17,10 +17,11 @@
         <td><%= room.name %></td>
         <td><%= room.user.username %></td>
         <td><%= room.created_at.to_date %></td>
-        <td><%= room.status %></td>
+        <td><%= room.status=='approved' ? 'published' : 'hidden' %></td>
         <td><%= room.version %></td>
-        <td><%= link_to 'APPROVE' , approve_path(room)%></td>
-        <td><%= link_to 'REJECT' , reject_path(room) %></td>
+        <td><%= link_to 'EDIT' , room_path(room) , method: :PUT %></td>
+        <td><%= link_to 'DELETE' , room_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
+        <td><%= link_to 'HIDE' , reject_path(room) %></td>
         <td><%= link_to 'VIEW' , room_path(room) %></td>
       </tr>
     <% end %>

@@ -12,15 +12,15 @@
   </thead>
 
   <tbody>
-    <% @room.each do |room| %>
+    <% @rooms.each do |room| %>
       <tr>
         <td><%= room.name %></td>
         <td><%= room.user.username %></td>
         <td><%= room.created_at.to_date %></td>
         <td><%= room.status %></td>
         <td><%= room.version %></td>
-        <td><%= link_to 'APPROVE' , approve_path(room)%></td>
-        <td><%= link_to 'REJECT' , reject_path(room) %></td>
+        <td><%= link_to 'EDIT' , room_path(room) , method: :PUT %></td>
+        <td><%= link_to 'DELETE' , room_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
         <td><%= link_to 'VIEW' , room_path(room) %></td>
       </tr>
     <% end %>
