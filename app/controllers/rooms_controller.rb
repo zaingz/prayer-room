@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy ,:creport]
+  before_action :set_room, only: [:show, :edit, :update , :destroy ,:creport , :voteup]
   before_action :authenticate_user!, except: [:index]
 
   # GET /rooms
@@ -26,7 +26,11 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-
+    if Room.order('id DESC').count > 0
+      @room.id = (Room.order('id DESC').last.id.first.first + 1).to_s + ',0'
+    else
+      @room.id = '1,0'
+    end
     respond_to do |format|
       if params[:photo].present?
         @room.user_id = current_user.id
@@ -34,7 +38,7 @@ class RoomsController < ApplicationController
           params[:photo]['image'].each do |a|
             @photo = @room.photos.create!(:image => a, :room_id => @room.id)
           end
-          format.html { redirect_to @room, notice: 'Room was successfully created.' }
+          format.html { redirect_to root_path, notice: 'Room was successfully created.' }
           format.json { render :show, status: :created, location: @room }
         else
           format.html { render :new }
@@ -51,12 +55,16 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     respond_to do |format|
-      if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
-        format.json { render :show, status: :ok, location: @room }
+      if room= Room.new(room_params)
+        room.id = @room.id.first.first.to_s + ',' + (@room.version + 1).to_s
+        room.version = @room.version + 1
+        room.user_id = current_user.id
+        room.save
+        format.html { redirect_to rooms_path, notice: 'Room was successfully updated.' }
+        format.json { render :show, status: :ok, location: room }
       else
         format.html { render :edit }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+        format.json { render json: room.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -95,6 +103,17 @@ class RoomsController < ApplicationController
           format.html { redirect_to rooms_path, notice: 'Report was already generated.' }
           format.json { render json: @room.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def voteup
+    id = @room.id.first.first
+    version = @room.id.first.second
+    if Voteup.where(:room_id => id , :version => version , :user_id => current_user.id).count>0
+      redirect_to :back ,  notice: 'Already Voted.' 
+    else
+      vote = Voteup.create(room_id: id , version: version , user_id: current_user.id)
+      redirect_to :back , notice: 'Voted.'
     end
   end
 

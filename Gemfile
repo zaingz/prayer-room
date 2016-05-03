@@ -28,6 +28,8 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
 
+gem 'composite_primary_keys'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2', branch: 'v0.2.10'
