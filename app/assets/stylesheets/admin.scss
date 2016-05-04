@@ -1,3 +1,41 @@
 // Place all the styles related to the admin controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.dash{
+	height:90vh;
+	padding: 0px;
+	border-top: 5px solid #FF9800;
+	background-color: #03A9F4;
+	color: white; 
+	ul{
+		li{
+			a{
+				color: #FFF;
+				line-height: 40px;
+				font-weight: bold;
+			}
+			a:hover {
+				background-color: #FF9800;
+			}
+			a:focus{
+				background-color: #FF9800;
+			}
+			h4{
+				line-height: 40px;
+				text-align: center;
+			}
+			
+		}
+	}
+}
+
+.text_center_adjust{
+	vertical-align: middle;
+}
+
+.admin_yield{
+	height:90vh;
+	background-color: rgba(193, 193, 193, 0.05);
+}

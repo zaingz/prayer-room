@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-3">
+    <%= form_tag(admin_search_submission_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "apply", "<option value=1 >Move to trash</option><option value=2 >Delete</option>".html_safe ,class: "form-control" %>
+      <%= submit_tag 'Apply' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_submission_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "room", "<option value=1 >All Dates</option><option value=2 >Status</option><option value=3 >Version</option>".html_safe ,class: "form-control"%>
+      <%= submit_tag 'Filter' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_submission_path , :method => :get , :style => 'display: flex;') do %>
+      <%= search_field('', :name , class: "form-control") %>
+      <%= submit_tag 'Search' %>
+    <% end %>
+  </div>  
+</div>
+<br>
 <table class="table table-striped">
   <thead>
     <tr>

@@ -7,9 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if user_signed_in? %>
-	<h5 style="text-align: center;">Welcome <%= current_user.username %>  <%= link_to "SignOut" , destroy_user_session_path , method: :delete%></h5>
-<% end %>
+
+<div class="container">
+	<div class="row" style="border-bottom: 5px solid #00ADFF;">
+		<div class="col-md-2">
+			<h3>PrayWhere</h3>
+		</div>
+		<div class="col-md-5">
+			<h4 class="text_center_adjust" style="font-style: italic;">"Prayer Is One Of The Foundation Of Being A Muslim"</h4>
+		</div>
+		<div class="col-md-5">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="#">HOME</a></li>
+		      <li><a href="#" >ABOUT</a></li>
+		      <li><a href="#">CONTACT US</a></li>  
+		    </ul>
+
+		    <ul class="nav navbar-nav" style="float: right;">
+		    	<% if user_signed_in? %>
+					<li><%= current_user.username %></li>
+					<li><%= link_to "SignOut" , destroy_user_session_path , method: :delete%></li>
+				<% else %>
+			    	<li><a href="#" >Register</a></li>
+			    	<li><a href="#" >Login</a></li>
+			    <% end %>
+		    </ul>
+		</div>
+	</div>
+</div>
+
+
 <%= yield %>
 
 </body>

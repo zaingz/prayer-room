@@ -2,9 +2,22 @@ class AdminController < ApplicationController
 	before_action :is_admin
 	before_action :set_user, only: [:user_ban , :user_del , :user_edit , :user_update]
 	before_action :set_room, only: [:approve_room ,:reject_room]
+	layout "admin"
 
 	def user
-		@user = User.all
+		p "User "+params.inspect
+		if params[:format].present?
+			user = eval(params[:format])
+			if user.count>0
+				user.each do |a|
+					@user = User.where(:id => user)
+				end
+			else
+				@user = []
+			end
+		else
+			@user = User.all
+		end
 	end
 
 	def user_ban

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PrayWhere</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<div class="container">
+		<div class="row text_center_adjust">
+			<h3 style="float: left;">PrayWhere</h3>
+			<h3 style="float: right;">Hello, admin! </h3>
+		</div>
+	</div>
+	<div class="container-fluid" style="border-top: 5px solid #00ADFF;">
+		<div class="row" style="margin-top: 1%;">
+			<div class="col-md-2 dash">
+				<ul class="nav nav-pills nav-stacked" >
+				    <li><h4>DASHBOARD</h4></li>
+				    <li><%= link_to ' ENTRIES' , admin_room_entries_path ,:class =>"glyphicon glyphicon-file" %></li>
+				    <li><%= link_to ' USERS' , users_path ,:class =>"glyphicon glyphicon-user"%></li>
+				    <li><a href="#" class="glyphicon glyphicon-cog"> TOOLS</a></li>
+				    <li><%= link_to ' SUBMISSIONS', admin_rooms_path , :class =>"glyphicon glyphicon-list-alt" %></li>
+				    <li><%= link_to ' REPORTS' , admin_reports_path ,:class =>"glyphicon glyphicon-file" %></li>
+				    <li><a href="#" class="glyphicon glyphicon-stats"> ANALYTICS</a></li>
+				</ul>
+			</div>
+			<div class="col-md-10 admin_yield">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

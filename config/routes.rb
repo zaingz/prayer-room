@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   get 'room/search' => 'search#search_by_name'
   get 'room/search_all' => 'search#search'
+  get 'admin/search/user' => 'search#user'
   get 'room/voteup/:id' => 'rooms#voteup' ,:as => 'voteup'
+  get 'admin/search/entries' => 'search#entries'
+  get 'admin/search/submission' => 'search#submission'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

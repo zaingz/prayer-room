@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-3">
+    <%= form_tag(admin_search_user_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "apply", "<option value=1 >Move to trash</option><option value=2 >Delete</option>".html_safe ,class: "form-control" %>
+      <%= submit_tag 'Apply' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_user_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "user", "<option value=1 >Role/User</option><option value=2 >Role/Admin</option><option value=3 >Status/Active</option><option value=4 >Status/Suspended</option>".html_safe ,class: "form-control"%>
+      <%= submit_tag 'Filter' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_user_path , :method => :get , :style => 'display: flex;') do %>
+      <%= search_field('', :name , class: "form-control") %>
+      <%= submit_tag 'Search' %>
+    <% end %>
+  </div>  
+</div>
+<br>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -14,7 +35,7 @@
     <% @user.each do |user| %>
       <tr>
         <td><%= user.username %></td>
-        <td><%= user.role %></td>
+        <td><%= user.role=='admin' ? 'Admin' : 'User' %></td>
         <td><%= user.created_at.to_date %></td>
         <td><%= user.status %></td>
         <td><%= link_to 'EDIT' , edit_user_path(user) %></td>
