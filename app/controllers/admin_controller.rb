@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
 	before_action :is_admin
 	before_action :set_user, only: [:user_ban , :user_del , :user_edit , :user_update]
-	before_action :set_room, only: [:approve_room ,:reject_room]
+	before_action :set_room_version, only: [:approve_room ,:reject_room]
 	layout "admin"
 
 	def user
@@ -54,19 +54,31 @@ class AdminController < ApplicationController
 	end
 
 	def rooms
-		@room = Room.pending
+		p "Params Pending " + params.inspect
+		if params[:format].present?
+			room = eval(params[:format])
+			if room.count>0
+				room.each do |a|
+					@version = Version.where(:id => room)
+				end
+			else
+				@version = []
+			end
+		else
+			@version = Version.pending
+		end
 	end
 
 	def approve_room
-		if @room.status != 'approved'
-			@room.status = 1
+		if @version.status != 'approved'
+			@version.status = 1
 			respond_to do |format|
-				if @room.save
+				if @version.save
 					format.html{ redirect_to admin_rooms_path , notice: "Room was successfully approved" }
-					format.json { render :room, status: :ok }
+					format.json { render :version, status: :ok }
 				else
 					format.html { redirect_to admin_rooms_path , notice: "Failed to approve room" }
-		        	format.json { render json: @room.errors, status: :unprocessable_entity }
+		        	format.json { render json: @version.errors, status: :unprocessable_entity }
 				end
 			end
 		else
@@ -75,15 +87,15 @@ class AdminController < ApplicationController
 	end
 
 	def reject_room
-		if @room.status != 'rejected'
-			@room.status = 2
+		if @version.status != 'rejected'
+			@version.status = 2
 			respond_to do |format|
-				if @room.save
+				if @version.save
 					format.html{ redirect_to :back , notice: "Room was successfully rejected" }
-					format.json { render :room, status: :ok }
+					format.json { render :version, status: :ok }
 				else
 					format.html { redirect_to :back , notice: "Failed to approve room" }
-		        	format.json { render json: @room.errors, status: :unprocessable_entity }
+		        	format.json { render json: @version.errors, status: :unprocessable_entity }
 				end
 			end
 		else
@@ -92,12 +104,24 @@ class AdminController < ApplicationController
 	end
 
 	def room_entries
-		@room = Room.approve_reject
+		p "My Paraams " + params.inspect
+		if params[:format].present?
+			version = eval(params[:format])
+			if version.count>0
+				version.each do |a|
+					@version = Version.where(:id => version)
+				end
+			else
+				@version = []
+			end
+		else
+			@version= Version.all
+		end
 	end
 
 	def reports
-		@room = Room.approve_reject
-		@rooms = Room.all
+		@version = Version.pending
+		@versions = Version.where(typ: 1)
 	end
 
 	private
@@ -107,7 +131,7 @@ class AdminController < ApplicationController
 	def user_params
 		params.require(:user).permit(:status, :username, :role , :ban)
 	end
-	def set_room
-		@room = Room.find(params[:id])
+	def set_room_version
+		@version = Version.find(params[:id])
 	end
 end

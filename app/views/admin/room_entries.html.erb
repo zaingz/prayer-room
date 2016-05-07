@@ -33,17 +33,17 @@
   </thead>
 
   <tbody>
-    <% @room.each do |room| %>
+    <% @version.each do |room| %>
       <tr>
         <td><%= room.name %></td>
-        <td><%= room.user.username %></td>
+        <td><%= room.room.user.username %></td>
         <td><%= room.created_at.to_date %></td>
         <td><%= room.status=='approved' ? 'published' : 'hidden' %></td>
-        <td><%= room.version %></td>
-        <td><%= link_to 'EDIT' , room_path(room) , method: :PUT %></td>
-        <td><%= link_to 'DELETE' , room_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
+        <td><%= room.typ=='newly' ? 'New' : 'Updated' %></td>
+        <td><%= link_to 'EDIT' , edit_version_path(room) , method: :GET %></td>
+        <td><%= link_to 'DELETE' , version_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
         <td><%= link_to 'HIDE' , reject_path(room) %></td>
-        <td><%= link_to 'VIEW' , room_path(room) %></td>
+        <td><%= link_to 'VIEW' , version_path(room) %></td>
       </tr>
     <% end %>
   </tbody>

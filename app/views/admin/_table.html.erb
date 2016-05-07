@@ -1,4 +1,25 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-3">
+    <%= form_tag(admin_search_entries_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "apply", "<option value=1 >Move to trash</option><option value=2 >Delete</option>".html_safe ,class: "form-control" %>
+      <%= submit_tag 'Apply' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_entries_path , :method => :get , :style => 'display: flex;') do %>
+      <%= select_tag "room", "<option value=1 >All Dates</option><option value=2 >Status/Approved</option><option value=3 >Status/Pending</option><option value=4 >Version</option>".html_safe ,class: "form-control"%>
+      <%= submit_tag 'Filter' %>
+    <% end %>
+  </div>
+  <div class="col-md-3 col-md-offset-1">
+    <%= form_tag(admin_search_entries_path , :method => :get , :style => 'display: flex;') do %>
+      <%= search_field('', :name , class: "form-control") %>
+      <%= submit_tag 'Search' %>
+    <% end %>
+  </div>  
+</div>
+<br>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -10,18 +31,17 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @rooms.each do |room| %>
+    <% @versions.each do |room| %>
       <tr>
         <td><%= room.name %></td>
-        <td><%= room.user.username %></td>
+        <td><%= room.room.user.username %></td>
         <td><%= room.created_at.to_date %></td>
         <td><%= room.status %></td>
-        <td><%= room.version %></td>
-        <td><%= link_to 'EDIT' , room_path(room) , method: :PUT %></td>
-        <td><%= link_to 'DELETE' , room_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
-        <td><%= link_to 'VIEW' , room_path(room) %></td>
+        <td><%= room.typ %></td>
+        <td><%= link_to 'EDIT' , edit_version_path(room) , method: :GET %></td>
+        <td><%= link_to 'DELETE' , version_path(room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
+        <td><%= link_to 'VIEW' , version_path(room) %></td>
       </tr>
     <% end %>
   </tbody>

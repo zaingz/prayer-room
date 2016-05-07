@@ -1,4 +1,4 @@
 class Photo < ActiveRecord::Base
 	mount_uploader :image, ImageUploader
-	belongs_to :room , :foreign_key => [:id, :version]
+	belongs_to :version
 end

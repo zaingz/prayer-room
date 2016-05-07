@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
 	  		@admin = current_user
 	  	else
 	  		respond_to do |format|
-	  			format.html { redirect_to rooms_path, notice: 'You are not admin!.' }
+	  			format.html { redirect_to versions_path, notice: 'You are not admin!.' }
 	  		end
 	  	end
 	else
-		redirect_to rooms_path, notice: 'Please signin first!.' 
+		redirect_to versions_path, notice: 'Please signin first!.' 
 	end
   end
 end

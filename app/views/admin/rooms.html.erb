@@ -33,16 +33,16 @@
   </thead>
 
   <tbody>
-    <% @room.each do |room| %>
+    <% @version.each do |version| %>
       <tr>
-        <td><%= room.name %></td>
-        <td><%= room.user.username %></td>
-        <td><%= room.created_at.to_date %></td>
-        <td><%= room.status %></td>
-        <td><%= room.version %></td>
-        <td><%= link_to 'APPROVE' , approve_path(room)%></td>
-        <td><%= link_to 'REJECT' , reject_path(room) %></td>
-        <td><%= link_to 'VIEW' , room_path(room) %></td>
+        <td><%= version.name %></td>
+        <td><%= version.room.user.username %></td>
+        <td><%= version.created_at.to_date %></td>
+        <td><%= version.status %></td>
+        <td><%= version.typ=='newly' ? 'New' : 'Updated' %></td>
+        <td><%= link_to 'APPROVE' , approve_path(version)%></td>
+        <td><%= link_to 'REJECT' , reject_path(version) %></td>
+        <td><%= link_to 'VIEW' , version_path(version) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook , :google_oauth2]
 	enum role: [:end_user , :admin]
   enum status: [:suspended , :active]
-	has_many :rooms , :foreign_key => [:id, :version]
+	has_many :rooms
   has_many :reports, :as => 'reporter'
   has_many :checkins
   has_many :voteups

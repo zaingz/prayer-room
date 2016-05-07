@@ -1,6 +1,6 @@
-class CreateRooms < ActiveRecord::Migration
+class CreateVersions < ActiveRecord::Migration
   def change
-    create_table :rooms do |t|
+    create_table :versions do |t|
       t.string :name
       t.string :street
       t.string :floor
@@ -9,8 +9,6 @@ class CreateRooms < ActiveRecord::Migration
       t.text :description
       t.text :direction
       t.string :link
-      t.integer :checkin ,default: 0
-      t.integer :status , default: 0
 
       t.timestamps null: false
     end

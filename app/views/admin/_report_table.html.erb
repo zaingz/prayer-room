@@ -14,14 +14,14 @@
   <tbody>
     <% @reports.each do |report| %>
       <tr>
-        <td><%= report.room.name %></td>
-        <td><%= report.room.user.username %></td>
-        <td><%= report.room.created_at.to_date %></td>
-        <td><%= report.room.status %></td>
-        <td><%= report.room.version %></td>
-        <td><%= link_to 'EDIT' , room_path(report.room) , method: :PUT %></td>
-        <td><%= link_to 'DELETE' , room_path(report.room) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
-        <td><%= link_to 'VIEW' , room_path(report.room) %></td>
+        <td><%= report.version.name %></td>
+        <td><%= report.version.room.user.username %></td>
+        <td><%= report.version.created_at.to_date %></td>
+        <td><%= report.version.status %></td>
+        <td><%= report.version.typ %></td>
+        <td><%= link_to 'EDIT' , edit_version_path(report.version) , method: :GET %></td>
+        <td><%= link_to 'DELETE' , version_path(report.version) , method: :DELETE , data: { confirm: 'Are you sure?' }%></td>
+        <td><%= link_to 'VIEW' , version_path(report.version) %></td>
       </tr>
     <% end %>
   </tbody>

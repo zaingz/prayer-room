@@ -1,14 +1,14 @@
 class SearchController < ApplicationController
 	def search_by_name
-		@room = Room.where(:name => params[:name])
+		@verion = Version.where(:name => params[:name])
 	end
 
 	def search
-		@room = Room.all
-		@room = @room.where(:name => params[:name]) if params[:name].present?
-		@room = @room.where(:city => params[:city]) if params[:city].present?
-		@room = @room.where(:country => params[:country]) if params[:country].present?
-		@room
+		@version = Version.all
+		@version = @version.where(:name => params[:name]) if params[:name].present?
+		@version = @version.where(:city => params[:city]) if params[:city].present?
+		@version = @version.where(:country => params[:country]) if params[:country].present?
+		@version
 	end
 
 	def user
@@ -36,10 +36,54 @@ class SearchController < ApplicationController
 	end
 
 	def entries
-		redirect_to admin_room_entries_path 
+		p "Params " + params.inspect
+		if params[:room].present?
+			case params[:room].to_i
+			when 1
+				@version= Version.order(created_at: "DESC")
+			when 2
+				@version = Version.where(:status => 1)
+			when 3
+				@version = Version.where(:status => 0)
+			when 4
+				@version = Version.order(created_at: 'ASC' )
+			end
+			@version = @version.pluck(:id).to_s
+		elsif params[:apply].present?
+			@version = []
+		else
+			@version = Version.where(:name => params[:name])
+			@version = @version.pluck(:id).to_s
+		end
+		p @version.inspect
+		redirect_to admin_room_entries_path(@version)
 	end
 
 	def submission
-		redirect_to admin_rooms_path
+		p "Params " + params.inspect
+		if params[:room].present?
+			case params[:room].to_i
+			when 1
+				@version= Version.pending.order(created_at: "DESC")
+			when 2
+				@version = Version.pending
+			when 3
+				@version = Version.pending.order(created_at: 'ASC' )
+			end
+			@version = @version.pluck(:id).to_s
+		elsif params[:apply].present?
+			@version = []
+		else
+			@version = Version.pending.where(:name => params[:name])
+			@version = @version.pluck(:id).to_s
+		end
+		p @version.inspect
+		p request.referrer + "/?id=#{@version.first}"
+		p @version
+		redirect_to admin_rooms_path(@version)
+	end
+
+	def reports
+		redirect_to :back
 	end
 end

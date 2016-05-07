@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Versions</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Street</th>
+      <th>Floor</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Description</th>
+      <th>Direction</th>
+      <th>Link</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @versions.each do |version| %>
+      <tr>
+        <td><%= version.name %></td>
+        <td><%= version.street %></td>
+        <td><%= version.floor %></td>
+        <td><%= version.city %></td>
+        <td><%= version.country %></td>
+        <td><%= version.description %></td>
+        <td><%= version.direction %></td>
+        <td><%= version.link %></td>
+        <td><%= link_to 'Show', version %></td>
+        <td><%= link_to 'Edit', edit_version_path(version) %></td>
+        <td><%= link_to 'Destroy', version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'VoteUp', voteup_path(version) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Version', new_version_path %>

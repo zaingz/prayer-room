@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  root 'rooms#index'
+  resources :versions
+  resources :versions
+  root 'versions#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   resources :photos
   resources :rooms
-  get 'rooms/report/:id' => 'rooms#report' , :as => 'report'
-  post 'report/:id' => 'rooms#creport' , :as => 'report_create'
+  get 'rooms/report/:id' => 'versions#report' , :as => 'report'
+  post 'report/:id' => 'versions#creport' , :as => 'report_create'
   get 'admin/users' => 'admin#user' , :as => 'users'
   get 'admin/user/ban/:id' => 'admin#user_ban'
   get 'admin/user/ban' , :as => 'ban'
@@ -21,10 +23,9 @@ Rails.application.routes.draw do
   get 'room/search' => 'search#search_by_name'
   get 'room/search_all' => 'search#search'
   get 'admin/search/user' => 'search#user'
-  get 'room/voteup/:id' => 'rooms#voteup' ,:as => 'voteup'
+  get 'room/voteup/:id' => 'versions#voteup' ,:as => 'voteup'
   get 'admin/search/entries' => 'search#entries'
   get 'admin/search/submission' => 'search#submission'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
