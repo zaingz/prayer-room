@@ -15,15 +15,15 @@
 
 <div class="tab-content">
   <div id="menu" class="tab-pane fade in active">
-	<% @reports = Report.no_longer_exist %>
+	<% @reports = Report.no_longer_exist.paginate(:page => params[:page], :per_page => 2) %>
 	<%= render 'report_table' %>
   </div>
   <div id="menu1" class="tab-pane fade">
-    <% @reports = Report.under_renovation %>
+    <% @reports = Report.under_renovation.paginate(:page => params[:page], :per_page => 2) %>
 	<%= render 'report_table' %>
   </div>
   <div id="menu2" class="tab-pane fade">
-    <% @reports = Report.inappropriate_content %>
+    <% @reports = Report.inappropriate_content.paginate(:page => params[:page], :per_page => 2) %>
 	<%= render 'report_table' %>
   </div>
   <div id="menu3" class="tab-pane fade">

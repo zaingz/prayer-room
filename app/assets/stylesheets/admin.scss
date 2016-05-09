@@ -4,7 +4,7 @@
 
 
 .dash{
-	height:90vh;
+	height:125vh;
 	padding: 0px;
 	border-top: 5px solid #FF9800;
 	background-color: #03A9F4;
@@ -25,6 +25,9 @@
 			h4{
 				line-height: 40px;
 				text-align: center;
+			}
+			.active{
+				background-color: #FF9800;	
 			}
 			
 		}

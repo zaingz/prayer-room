@@ -56,7 +56,12 @@ class SearchController < ApplicationController
 			@version = @version.pluck(:id).to_s
 		end
 		p @version.inspect
-		redirect_to admin_room_entries_path(@version)
+		p request.referrer
+		if request.referrer.include? 'admin/reports'
+			redirect_to admin_reports_path(@version)
+		else
+			redirect_to admin_room_entries_path(@version)
+		end
 	end
 
 	def submission
@@ -78,9 +83,13 @@ class SearchController < ApplicationController
 			@version = @version.pluck(:id).to_s
 		end
 		p @version.inspect
-		p request.referrer + "/?id=#{@version.first}"
+		p request.referrer
 		p @version
-		redirect_to admin_rooms_path(@version)
+		if request.referrer.include? 'admin/reports'
+			redirect_to admin_reports_path(@version)
+		else
+			redirect_to admin_rooms_path(@version)
+		end
 	end
 
 	def reports

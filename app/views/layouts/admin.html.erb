@@ -18,11 +18,11 @@
 			<div class="col-md-2 dash">
 				<ul class="nav nav-pills nav-stacked" >
 				    <li><h4>DASHBOARD</h4></li>
-				    <li><%= link_to ' ENTRIES' , admin_room_entries_path ,:class =>"glyphicon glyphicon-file" %></li>
-				    <li><%= link_to ' USERS' , users_path ,:class =>"glyphicon glyphicon-user"%></li>
+				    <li class="<%= current_page?(controller: 'admin' , action: 'room_entries')? 'active' : ' ' %>"><%= link_to ' ENTRIES' , admin_room_entries_path ,:class =>"glyphicon glyphicon-file" %></li>
+				    <li class="<%= current_page?(controller: 'admin' , action: 'user')? 'active' : ' ' %>"><%= link_to ' USERS' , users_path ,:class =>"glyphicon glyphicon-user"%></li>
 				    <li><a href="#" class="glyphicon glyphicon-cog"> TOOLS</a></li>
-				    <li><%= link_to ' SUBMISSIONS', admin_rooms_path , :class =>"glyphicon glyphicon-list-alt" %></li>
-				    <li><%= link_to ' REPORTS' , admin_reports_path ,:class =>"glyphicon glyphicon-file" %></li>
+				    <li class="<%= current_page?(controller: 'admin' , action: 'rooms')? 'active' : ' ' %>"><%= link_to ' SUBMISSIONS', admin_rooms_path , :class =>"glyphicon glyphicon-list-alt" %></li>
+				    <li class="<%= current_page?(controller: 'admin' , action: 'reports')? 'active' : ' ' %>"><%= link_to ' REPORTS' , admin_reports_path ,:class =>"glyphicon glyphicon-file" %></li>
 				    <li><a href="#" class="glyphicon glyphicon-stats"> ANALYTICS</a></li>
 				</ul>
 			</div>

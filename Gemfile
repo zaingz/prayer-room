@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'omniauth'
 gem 'omniauth-facebook'

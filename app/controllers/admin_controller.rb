@@ -4,19 +4,23 @@ class AdminController < ApplicationController
 	before_action :set_room_version, only: [:approve_room ,:reject_room]
 	layout "admin"
 
+	def admin
+
+	end
+
 	def user
 		p "User "+params.inspect
 		if params[:format].present?
 			user = eval(params[:format])
 			if user.count>0
 				user.each do |a|
-					@user = User.where(:id => user)
+					@user = User.where(:id => user).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
 				@user = []
 			end
 		else
-			@user = User.all
+			@user = User.all.paginate(:page => params[:page], :per_page => 9)
 		end
 	end
 
@@ -59,13 +63,13 @@ class AdminController < ApplicationController
 			room = eval(params[:format])
 			if room.count>0
 				room.each do |a|
-					@version = Version.where(:id => room)
+					@version = Version.where(:id => room).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
 				@version = []
 			end
 		else
-			@version = Version.pending
+			@version = Version.pending.paginate(:page => params[:page], :per_page => 9)
 		end
 	end
 
@@ -109,19 +113,19 @@ class AdminController < ApplicationController
 			version = eval(params[:format])
 			if version.count>0
 				version.each do |a|
-					@version = Version.where(:id => version)
+					@version = Version.where(:id => version).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
 				@version = []
 			end
 		else
-			@version= Version.all
+			@version= Version.all.paginate(:page => params[:page], :per_page => 9)
 		end
 	end
 
 	def reports
-		@version = Version.pending
-		@versions = Version.where(typ: 1)
+		@version = Version.pending.paginate(:page => params[:page], :per_page => 2)
+		@versions = Version.where(typ: 1).paginate(:page => params[:page], :per_page => 2)
 	end
 
 	private
