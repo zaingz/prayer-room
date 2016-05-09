@@ -264,7 +264,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   #Add your ID and secret here
   #ID first, secret second
-  config.omniauth :google_oauth2, "228268116421-ut0iril96taflqqdict34t5jl5i9agl5.apps.googleusercontent.com", "Vw3mbHCsqU_dlmaWVDTKfwQF"
+  config.omniauth :google_oauth2, "1003472899641-ff094pf8t9sfj3p5dfvjgeo5vicelbf2.apps.googleusercontent.com", "5D8rX3sbEf3-Iv71Yw5ivMUZ"
   config.omniauth :facebook, "1553376058298446", "aa98d95b37815fe80a52021b23857126"
   
 end
