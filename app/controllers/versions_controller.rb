@@ -5,6 +5,9 @@ class VersionsController < ApplicationController
   # GET /versions
   # GET /versions.json
   def index
+    if user_signed_in?
+      redirect_to admin_room_entries_path if current_user.role == 'admin'
+    end
     @versions = Version.all
   end
 

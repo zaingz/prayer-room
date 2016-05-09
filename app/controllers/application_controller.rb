@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	  		end
 	  	end
 	else
-		redirect_to versions_path, notice: 'Please signin first!.' 
+		redirect_to admin_signin_path, notice: 'Please signin first!.' 
 	end
   end
 end

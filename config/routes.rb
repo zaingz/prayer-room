@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :versions
   root 'versions#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
+  get 'admin/signin' => 'admin#admin_signin'
   resources :photos
   resources :rooms
   get 'rooms/report/:id' => 'versions#report' , :as => 'report'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get 'room/voteup/:id' => 'versions#voteup' ,:as => 'voteup'
   get 'admin/search/entries' => 'search#entries'
   get 'admin/search/submission' => 'search#submission'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -11,6 +11,9 @@
 		<div class="row text_center_adjust">
 			<h3 style="float: left;">PrayWhere</h3>
 			<h3 style="float: right;">Hello, admin! </h3>
+			<% if user_signed_in? %>
+				<h5 style="float: right; margin-right: 20px;margin-top: 25px;"><%= link_to "SignOut" , destroy_user_session_path , method: :delete%></h5>
+		    <% end %>
 		</div>
 	</div>
 	<div class="container-fluid" style="border-top: 5px solid #00ADFF;">

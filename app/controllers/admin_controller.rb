@@ -1,11 +1,17 @@
 class AdminController < ApplicationController
-	before_action :is_admin
+	before_action :is_admin , except: [:admin_signin]
 	before_action :set_user, only: [:user_ban , :user_del , :user_edit , :user_update]
 	before_action :set_room_version, only: [:approve_room ,:reject_room]
 	layout "admin"
 
-	def admin
-
+	def admin_signin
+		if user_signed_in?
+			if current_user.role == 'admin'
+				redirect_to admin_room_entries_path
+			else
+				redirect_to root_path
+			end
+		end
 	end
 
 	def user
@@ -17,7 +23,7 @@ class AdminController < ApplicationController
 					@user = User.where(:id => user).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
-				@user = []
+				@user = User.where(:id => 0).paginate(:page => params[:page], :per_page => 9)
 			end
 		else
 			@user = User.all.paginate(:page => params[:page], :per_page => 9)
@@ -66,7 +72,7 @@ class AdminController < ApplicationController
 					@version = Version.where(:id => room).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
-				@version = []
+				@version = Version.where(:id => 0).paginate(:page => params[:page], :per_page => 9)
 			end
 		else
 			@version = Version.pending.paginate(:page => params[:page], :per_page => 9)
@@ -116,7 +122,7 @@ class AdminController < ApplicationController
 					@version = Version.where(:id => version).paginate(:page => params[:page], :per_page => 9)
 				end
 			else
-				@version = []
+				@version = Version.where(:id => 0).paginate(:page => params[:page], :per_page => 9)
 			end
 		else
 			@version= Version.all.paginate(:page => params[:page], :per_page => 9)
