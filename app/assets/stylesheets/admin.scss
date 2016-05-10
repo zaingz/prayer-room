@@ -29,7 +29,17 @@
 			.active{
 				background-color: #FF9800;	
 			}
-			
+			ul{
+				li{
+					a{
+						color: #FFF;
+						line-height: 40px;
+						font-weight: bold;
+						text-decoration: none;
+						display: inline;
+					}
+				}
+			}
 		}
 	}
 }

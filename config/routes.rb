@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'admin/room/reject/:id' => 'admin#reject_room' , :as => 'reject'
   get 'admin/room' => 'admin#room_entries' ,:as => 'admin_room_entries'
   get 'admin/reports' => 'admin#reports'
+  get 'admin/reports/pre_approval' => 'admin#preapproval'
+  get 'admin/reports/better_version' => 'admin#better_version'
+  get 'admin/reports/spam' => 'admin#spam'
 
   get 'room/search' => 'search#search_by_name'
   get 'room/search_all' => 'search#search'

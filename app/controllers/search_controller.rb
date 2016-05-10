@@ -58,7 +58,7 @@ class SearchController < ApplicationController
 		p @version.inspect
 		p request.referrer
 		if request.referrer.include? 'admin/reports'
-			redirect_to admin_reports_path(@version)
+			redirect_to admin_reports_better_version_path(@version)
 		else
 			redirect_to admin_room_entries_path(@version)
 		end
@@ -86,7 +86,7 @@ class SearchController < ApplicationController
 		p request.referrer
 		p @version
 		if request.referrer.include? 'admin/reports'
-			redirect_to admin_reports_path(@version)
+			redirect_to admin_reports_pre_approval_path(@version)
 		else
 			redirect_to admin_rooms_path(@version)
 		end

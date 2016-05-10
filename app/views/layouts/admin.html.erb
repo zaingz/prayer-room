@@ -24,8 +24,15 @@
 				    <li class="<%= current_page?(controller: 'admin' , action: 'room_entries')? 'active' : ' ' %>"><%= link_to ' ENTRIES' , admin_room_entries_path ,:class =>"glyphicon glyphicon-file" %></li>
 				    <li class="<%= current_page?(controller: 'admin' , action: 'user')? 'active' : ' ' %>"><%= link_to ' USERS' , users_path ,:class =>"glyphicon glyphicon-user"%></li>
 				    <li><a href="#" class="glyphicon glyphicon-cog"> TOOLS</a></li>
-				    <li class="<%= current_page?(controller: 'admin' , action: 'rooms')? 'active' : ' ' %>"><%= link_to ' SUBMISSIONS', admin_rooms_path , :class =>"glyphicon glyphicon-list-alt" %></li>
-				    <li class="<%= current_page?(controller: 'admin' , action: 'reports')? 'active' : ' ' %>"><%= link_to ' REPORTS' , admin_reports_path ,:class =>"glyphicon glyphicon-file" %></li>
+				    <li class=" <%= current_page?(controller: 'admin' , action: 'rooms')? 'active' : ' ' %>"><%= link_to ' SUBMISSIONS', admin_rooms_path , :class =>"glyphicon glyphicon-list-alt" %>
+				    </li>
+				    <li class="<%= current_page?(controller: 'admin' , action: 'reports')? 'active' : ' ' %>"><%= link_to ' REPORTS' , admin_reports_path ,:class =>"glyphicon glyphicon-file" %>
+				    	<ul>
+				    		<li><%= link_to ' PRE-APPROVAL' , admin_reports_pre_approval_path %></li>
+				    		<li><%= link_to ' BETTER VERSION' , admin_reports_better_version_path %></li>
+				    		<li><%= link_to ' SPAM/STATUS' , admin_reports_spam_path %></li>
+				    	</ul>
+				    </li>
 				    <li><a href="#" class="glyphicon glyphicon-stats"> ANALYTICS</a></li>
 				</ul>
 			</div>

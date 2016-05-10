@@ -130,8 +130,44 @@ class AdminController < ApplicationController
 	end
 
 	def reports
-		@version = Version.pending.paginate(:page => params[:page], :per_page => 2)
-		@versions = Version.where(typ: 1).paginate(:page => params[:page], :per_page => 2)
+		@version = Version.pending.better.paginate(:page => params[:page], :per_page => 2)
+		@versions = Version.better.approve.where(typ: 1).paginate(:page => params[:page], :per_page => 2)
+	end
+
+	def preapproval
+		p "My Paraams " + params.inspect
+		if params[:format].present?
+			version = eval(params[:format])
+			if version.count>0
+				version.each do |a|
+					@version = Version.pending.better.where(:id => version).paginate(:page => params[:page], :per_page => 9)
+				end
+			else
+				@version = Version.where(:id => 0).paginate(:page => params[:page], :per_page => 9)
+			end
+		else
+			@version= Version.pending.better.paginate(:page => params[:page], :per_page => 9)
+		end
+	end
+
+	def better_version
+		p "My Paraams " + params.inspect
+		if params[:format].present?
+			version = eval(params[:format])
+			if version.count>0
+				version.each do |a|
+					@versions = Version.better.approve.where(:id => version).paginate(:page => params[:page], :per_page => 9)
+				end
+			else
+				@versions = Version.where(:id => 0).paginate(:page => params[:page], :per_page => 9)
+			end
+		else
+			@versions = Version.better.approve.paginate(:page => params[:page], :per_page => 9)
+		end
+	end
+
+	def spam
+
 	end
 
 	private

@@ -9,4 +9,6 @@ class Version < ActiveRecord::Base
 
 	scope :pending , lambda {where(:status => 0)}
 	scope :approve_reject , lambda {where.not(:status => 0)}
+	scope :approve , lambda {where(:status => 1)}
+	scope :better , lambda{where.not(typ: 'newly')}
 end
