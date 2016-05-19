@@ -29,14 +29,16 @@
 			.active{
 				background-color: #FF9800;	
 			}
-			ul{
+			ul{	
+				
 				li{
+					list-style-type: none;
 					a{
 						color: #FFF;
 						line-height: 40px;
 						font-weight: bold;
 						text-decoration: none;
-						display: inline;
+						
 					}
 				}
 			}

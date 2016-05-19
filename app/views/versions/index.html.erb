@@ -1,42 +1,122 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Listing Versions</h1>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Street</th>
-      <th>Floor</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>Description</th>
-      <th>Direction</th>
-      <th>Link</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @versions.each do |version| %>
-      <tr>
-        <td><%= version.name %></td>
-        <td><%= version.street %></td>
-        <td><%= version.floor %></td>
-        <td><%= version.city %></td>
-        <td><%= version.country %></td>
-        <td><%= version.description %></td>
-        <td><%= version.direction %></td>
-        <td><%= version.link %></td>
-        <td><%= link_to 'Show', version %></td>
-        <td><%= link_to 'Edit', edit_version_path(version) %></td>
-        <td><%= link_to 'Destroy', version, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'VoteUp', voteup_path(version) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Version', new_version_path %>
+<div class="header-main"> 
+    <div class="container">
+      <div class="search-box"> <span>Finding A</span> <strong>Prayer Place</strong> <span>Made Simple</span>
+        <div class="form-row clearfix">
+          <input type="email" class="form-control" id="email" placeholder="Enter your building name or street name">
+        </div>
+        <div class="form-row clearfix">
+          <input type="text" class="form-control city" id="" placeholder="Enter City">
+          <input type="text" class="form-control country" id="" placeholder="Enter Country">
+          <input type="submit" class="form-submit" id="" value="">
+        </div>
+      </div>
+    </div>
+</div>
+<div class="container">
+    <section class="section">
+    <div class="row">
+    <div class="img-box col-md-3 col-sm-6 col-xs-6"> 
+      <% if Version.better.decending.first.present? %>
+        <% firstB = Version.better.decending.first %>
+        <img src="<%= firstB.photos.first.image_url %>" width="234" height="232" alt="image descraption"> 
+        <p><%= firstB.name %></p>
+      <% else %>
+        <img src="images/img04.jpg" width="234" height="232" alt="image descraption"> 
+        <p>Prayer area</p>
+      <% end %>                   
+    </div>
+    <div class="img-box col-md-3 col-sm-6 col-xs-6"> 
+      <% if Version.better.decending.second.present? %>
+        <% firstB = Version.better.decending.second %>
+        <img src="<%= firstB.photos.first.image_url %>" width="234" height="232" alt="image descraption"> 
+        <p><%= firstB.name %></p>
+      <% else %>
+        <img src="images/img03.jpg" width="234" height="232" alt="image descraption">
+        <p>Prayer area</p>  
+      <% end %>
+    </div>
+    <div class="img-box col-md-3 col-sm-6 col-xs-6"> 
+      <% if Version.better.decending.third.present? %>
+        <% firstB = Version.better.decending.third %>
+        <img src="<%= firstB.photos.first.image_url %>" width="234" height="232" alt="image descraption"> 
+        <p><%= firstB.name %></p>
+      <% else %>
+        <img src="images/img02.jpg" width="234" height="232" alt="image descraption"> 
+        <p>Prayer area</p>   
+      <% end %>
+    </div>
+    <div class="img-box col-md-3 col-sm-6 col-xs-6"> 
+      <% if Version.better.decending.fourth.present? %>
+        <% firstB = Version.better.decending.fourth %>
+        <img src="<%= firstB.photos.first.image_url %>" width="234" height="232" alt="image descraption"> 
+        <p><%= firstB.name %></p>
+      <% else %>
+        <img src="images/img05.jpg" width="234" height="232" alt="image descraption">  
+        <p>Prayer area</p>  
+      <% end %>          
+    </div>
+    </div>
+    </section>
+    <strong>Search Result <%= @versions.count %> Rooms</strong> 
+</div>
+<div class="container">
+  <% @versions.each do |version|%>
+    <article class="prodect-item">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="photo"> <img src="<%= version.photos.first.image_url %>" width="305" height="263" alt="image descration"> </div>
+        </div>
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <div class="item-detail">
+            <h1><%= version.name %></h1>
+            <h2><strong>Location Adderss:</strong> <%= version.street %>, level <%= version.floor %></h2>
+            <p><%= version.description %></p>
+            <span class="checkin">Check In<span class="dotes">:</span><span><%= version.room.checkins.count %></span></span>
+            <span class="post">Date Posted<span class="dotes">:</span><span><%= version.created_at.strftime("%d-%m-%Y") %></span></span> 
+            <span class="status">Status<span class="dotes">:</span><span><%= version.reports.count<5 ? "Available" : "Unavailable"  %></span></span>
+            <%= link_to 'View more', version_path(version) , method: :get , class: "view-btn"%>
+          </div>
+        </div>
+      </div>
+    </article>
+  <% end %>
+  <%= will_paginate @versions %>
+</div>
+  <!-- <article class="prodect-item">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="photo"> <img src="images/img07_03.jpg" width="305" height="263" alt="image descration"> </div>
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <div class="item-detail">
+          <h1>Nanyang Polytechnic</h1>
+          <h2><strong>Location Adderss:</strong>Parkway East Hospital, level 2</h2>
+          <p>Parkway East Hospital, level 2 at Parkway East Medical Centre Blk (turn left after entering the main entrance) Small room which can accommodate 2-3 guests and its shared between muslimin and muslimah. Ablution can be taken at the toilet located beside the mushollah. Prayer mats, telekung and kain are provided. Slippers for ablution are also provided.</p>
+          <span class="checkin">Check In<span class="dotes">:</span><span>35</span></span>
+          <span class="post">Date Posted<span class="dotes">:</span><span>11-5-15</span></span> 
+          <span class="status">Status<span class="dotes">:</span><span>Under Renovation</span></span>
+          <a href="#" class="view-btn">View more</a> 
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="prodect-item">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="photo"> <img src="images/img08_03.jpg" width="305" height="263" alt="image descration"> </div>
+      </div>
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <div class="item-detail">
+          <h1>Parkway East Medical Center</h1>
+          <h2><strong>Location Adderss:</strong>Parkway East Hospital, level 2</h2>
+          <p>Parkway East Hospital, level 2 at Parkway East Medical Centre Blk (turn left after entering the main entrance) Small room which can accommodate 2-3 guests and its shared between muslimin and muslimah. Ablution can be taken at the toilet located beside the mushollah. Prayer mats, telekung and kain are provided. Slippers for ablution are also provided.</p>
+          <span class="checkin">Check In<span class="dotes">:</span><span>35</span></span>
+          <span class="post">Date Posted<span class="dotes">:</span><span>11-5-15</span></span> 
+          <span class="status">Status<span class="dotes">:</span><span>Available</span></span> 
+          <a href="#" class="view-btn">View more</a> 
+        </div>
+      </div>
+    </div>
+  </article> -->
+  

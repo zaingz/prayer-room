@@ -11,4 +11,11 @@ class Version < ActiveRecord::Base
 	scope :approve_reject , lambda {where.not(:status => 0)}
 	scope :approve , lambda {where(:status => 1)}
 	scope :better , lambda{where.not(typ: 'newly')}
+	scope :decending , lambda{ order(created_at: :desc)}
+
+
+	def self.search(name , city , country)
+		scope=  Version.approved
+		scope
+	end
 end

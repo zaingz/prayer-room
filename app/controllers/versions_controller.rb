@@ -1,6 +1,6 @@
 class VersionsController < ApplicationController
   before_action :set_version, only: [:show, :edit, :update, :destroy ,:creport , :voteup]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index , :show]
 
   # GET /versions
   # GET /versions.json
@@ -8,7 +8,7 @@ class VersionsController < ApplicationController
     if user_signed_in?
       redirect_to admin_room_entries_path if current_user.role == 'admin'
     end
-    @versions = Version.all
+    @versions = Version.approved.paginate(:page => params[:page], :per_page => 4)
   end
 
   # GET /versions/1

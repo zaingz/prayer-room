@@ -1,0 +1,105 @@
+@media only screen and (min-width:767px) and (max-width:992px){ 
+
+ul.nav-menu li {  
+	padding:0 30px 0 0;
+}
+ul.nav-menu li a {  
+	font-size:20px;
+}
+.section .img-box {
+    margin: 0 0 20px;
+}
+
+
+}
+
+
+/*mobile screens begins*/
+@media only screen and (max-width:766px){
+
+.logo{  
+	float:none;
+	margin:0 auto;
+	max-width:190px;
+	padding:0 0 20px;
+
+}
+.prayer {  
+	float:none;
+	text-align:center;
+	padding:0 0 20px;
+	margin:0 0 0;
+}
+ul.nav-menu {  
+	display:block;
+	padding:0px 10px;
+	margin:0px;
+}
+ul.nav-menu li {  
+	padding:10px 0px 10px;
+	position:relative;
+	float:none;
+	display:block;
+	border-bottom:1px solid #009ce0;
+}
+.login {  
+	float:none;
+	margin: 0 auto;
+	text-align:center;
+	padding:20px 0 0;
+}
+.search-box {
+	margin:100px auto;
+	float:none;
+	width:100%;
+}
+.city {  
+	width:100%;
+	margin:0 0 15px;
+}
+.country {
+	width:100%;
+	margin:0 0 15px;
+}
+.form-submit {
+	text-align:center;
+	width: 100%;
+}
+.prodect-item .photo {
+	margin:0 auto;
+}
+.item-detail {
+	margin:0 10px;
+}
+.item-detail h1 {
+	font-size:20px;
+}
+.item-detail h2 {
+	font-size:13px;
+}
+.item-detail .view-btn {
+	display:block;
+	margin:0 auto 30px;
+	float:none;
+	width:50%;
+}
+.item-detail span {
+	font-size:12px;
+	margin:0 10px 0 0;
+}
+.list-group-item .item-list {
+    padding: 15px 0 0;
+}
+.footer .list-group-item {
+    margin: 0 0 20px;
+}
+.section .img-box {
+    margin: 0 0 20px;
+}
+
+
+
+
+}
+
+/*mobile screens ends*/

@@ -1,43 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <title>PrayWhere</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<meta charset="utf-8">
+<title>PrayWhere</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+    
 </head>
+
 <body>
+<div id="wrapper">
+    <div class="header-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-sm-12 col-xs-12">
+          	<div class="logo"> 
+            	<a href="#"><img src="images/logo.png" alt="image description"></a> 
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                 </button>
+             </div>
+            <div class="prayer">
+            	<strong>"Prayer Is One Of The Foundation Of Being A Muslim"</strong>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-12 col-xs-12">
+          	<div class="navigation">
+                <div class="navbar" role="navigation">
+                  <div class="navbar-collapse collapse">
+                      <ul class="nav-menu nav clearfix">
+                        <li class="active"><%= link_to 'Home', root_path %></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">contact us</a></li>
+                     </ul>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-12 hidden-sm col-xs-12 hidden-xs">
+            <div class="login"> 
+            	<% if user_signed_in? %>
+					<%= current_user.username %>
+					<%= link_to 'SignOut', destroy_user_session_path , method: :delete%>
+				<% else %> 
+	            	<%= link_to 'Register', new_user_registration_path %>
+	            	<a class="active" data-toggle="modal" data-target="#myModal">Login</a>
+            	<% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="container">
-	<div class="row" style="border-bottom: 5px solid #00ADFF;">
-		<div class="col-md-2">
-			<h3>PrayWhere</h3>
-		</div>
-		<div class="col-md-5">
-			<h4 class="text_center_adjust" style="font-style: italic;">"Prayer Is One Of The Foundation Of Being A Muslim"</h4>
-		</div>
-		<div class="col-md-5">
-		    <ul class="nav navbar-nav">
-		      <li class="active"><a href="#">HOME</a></li>
-		      <li><a href="#" >ABOUT</a></li>
-		      <li><a href="#">CONTACT US</a></li>  
-		    </ul>
+    <%= yield %>
 
-		    <ul class="nav navbar-nav" style="float: right;">
-		    	<% if user_signed_in? %>
-					<li><%= current_user.username %></li>
-					<li><%= link_to "SignOut" , destroy_user_session_path , method: :delete%></li>
-				<% else %>
-			    	<li><a href="#" >Register</a></li>
-			    	<li><a href="#" >Login</a></li>
-			    <% end %>
-		    </ul>
-		</div>
-	</div>
+    
+    <footer class="footer">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-2 col-sm-4 col-xs-4">
+          <span>get in touch</span>
+          <div class="social-icon"> 
+          	<a href="https://www.facebook.com/"><img src="images/icon05_03.png"></a> 
+            <a href="https://www.twitter.com/"><img src="images/icon04_03.png"></a> 
+            <a href="https://www.google.com/"><img src="images/icon03_03.png"></a> 
+          </div>
+          <span>contact us</span> 
+          <span>terms and condition</span> 
+          <span>privacy policy</span>
+          <span>faq</span>
+          <span>about us</span> 
+        </div>
+        <div class="col-md-5 col-sm-8 col-xs-8">
+          <div class="list-group-item">
+            <span>recent post</span>
+            <% if Room.last.versions.last.present? %>
+            	<% @roomL = Room.last.versions.last %>
+	            <div class="photo"> 
+	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
+	            </div>
+	            <div class="item-list">
+	              <h3><%= @roomL.name %></h3>
+	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
+	            </div>
+            <% end %>
+          </div>
+          <div class="list-group-item">
+          	<% if Room.decending.third.versions.last.present? %>
+            	<% @roomL = Room.decending.third.versions.last %>
+	            <div class="photo"> 
+	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
+	            </div>
+	            <div class="item-list">
+	              <h3><%= @roomL.name %></h3>
+	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
+	            </div>
+	        <% end %>
+          </div>
+        </div>
+        <div class="col-md-5 col-sm-8 hidden-sm col-xs-6 hidden-xs">
+          <div class="list-group-item">
+          	<% if Room.decending.second.versions.last.present? %>
+            	<% @roomL = Room.decending.second.versions.last %>
+	            <div class="photo"> 
+	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption">
+	            </div>
+	            <div class="item-list">
+	              <h3><%= @roomL.name %></h3>
+	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
+	            </div>
+	        <% end %>
+          </div>
+          <div class="list-group-item">
+          	<% if Room.decending.fourth.versions.last.present? %>
+            	<% @roomL = Room.decending.fourth.versions.last %>
+	            <div class="photo"> 
+	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
+	            </div>
+	            <div class="item-list">
+	              <h3><%= @roomL.name %></h3>
+	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
+	            </div>
+	        <% end %>
+          </div>
+        </div>
+      </div>
+      </footer>
+      
+      
+      <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="form-row clearfix">
+        	<a href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="images/google.jpg"></a>
+        </div>
+        <div class="form-row clearfix">
+        	<a href="<%= user_facebook_omniauth_authorize_path %>"><img src="images/facebook.jpg"></a>
+        </div>
+        <div class="form-row or-line">
+        	<span class="title">or</span>
+        </div>
+     <div class="form-row clearfix">
+     	<input type="email" class="form-control" id="email" placeholder="Email Address">
+     </div>
+      <div class="form-row clearfix">
+      	<input type="email" class="form-control" id="email" placeholder="Password">
+      </div>
+      <div class="form-row clearfix">
+        <input type="submit" class="form-login" id="email" placeholder="" value="Log in">
+      </div>
+      <div class="form-row clearfix">
+        <a href="javascript:;" class="forget-password">Forget password?</a>
+        <p>Don't have an account?<a href="javascript:;" class="sign-up"> Sign up</a></p>
+      </div>
+    </div>
+
+  </div>
 </div>
-
-
-<%= yield %>
-
+</div>
 </body>
 </html>
