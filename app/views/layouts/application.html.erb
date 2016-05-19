@@ -80,18 +80,21 @@
         <div class="col-md-5 col-sm-8 col-xs-8">
           <div class="list-group-item">
             <span>recent post</span>
-            <% if Room.last.versions.last.present? %>
-            	<% @roomL = Room.last.versions.last %>
-	            <div class="photo"> 
-	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
-	            </div>
-	            <div class="item-list">
-	              <h3><%= @roomL.name %></h3>
-	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
-	            </div>
-            <% end %>
+            <% if Room.last.present? %>
+	            <% if Room.last.versions.last.present? %>
+	            	<% @roomL = Room.last.versions.last %>
+		            <div class="photo"> 
+		            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
+		            </div>
+		            <div class="item-list">
+		              <h3><%= @roomL.name %></h3>
+		              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
+		            </div>
+	            <% end %>
+	        <% end %>
           </div>
           <div class="list-group-item">
+          <% if Room.decending.third.present? %>
           	<% if Room.decending.third.versions.last.present? %>
             	<% @roomL = Room.decending.third.versions.last %>
 	            <div class="photo"> 
@@ -102,10 +105,12 @@
 	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
 	            </div>
 	        <% end %>
+	      <% end %>
           </div>
         </div>
         <div class="col-md-5 col-sm-8 hidden-sm col-xs-6 hidden-xs">
           <div class="list-group-item">
+          <% if Room.decending.second.present? %>
           	<% if Room.decending.second.versions.last.present? %>
             	<% @roomL = Room.decending.second.versions.last %>
 	            <div class="photo"> 
@@ -116,8 +121,10 @@
 	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
 	            </div>
 	        <% end %>
+	      <% end %>
           </div>
           <div class="list-group-item">
+          <% if Room.decending.fourth.present? %>
           	<% if Room.decending.fourth.versions.last.present? %>
             	<% @roomL = Room.decending.fourth.versions.last %>
 	            <div class="photo"> 
@@ -128,6 +135,7 @@
 	              <p>Location Address: <%= @roomL.street%>, Level <%= @roomL.floor%></p>
 	            </div>
 	        <% end %>
+	      <% end %>
           </div>
         </div>
       </div>
