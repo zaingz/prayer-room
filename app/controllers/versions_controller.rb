@@ -8,11 +8,15 @@ class VersionsController < ApplicationController
     if user_signed_in?
       redirect_to admin_room_entries_path if current_user.role == 'admin'
     end
-    p params
+    
     @versions = Version.approved.paginate(:page => params[:page], :per_page => 4)
-    @versions = @versions.where(name: params[:name]) if params[:name]!=""
-    @versions = @versions.where(city: params[:city]) if params[:city]!=""
-    @versions = @versions.where(country: params[:country]) if params[:country]!=""
+
+    p params
+    if params[:name].present?
+      @versions = @versions.where(name: params[:name]) if params[:name]!=""
+      @versions = @versions.where(city: params[:city]) if params[:city]!=""
+      @versions = @versions.where(country: params[:country]) if params[:country]!=""
+    end
   end
 
   # GET /versions/1

@@ -13,9 +13,4 @@ class Version < ActiveRecord::Base
 	scope :better , lambda{where.not(typ: 'newly')}
 	scope :decending , lambda{ order(created_at: :desc)}
 
-
-	def self.search(name , city , country)
-		scope=  Version.approved
-		scope
-	end
 end
