@@ -2,14 +2,16 @@
 <div class="header-main"> 
     <div class="container">
       <div class="search-box"> <span>Finding A</span> <strong>Prayer Place</strong> <span>Made Simple</span>
+      <form action="<%= versions_path %>" method="get">
         <div class="form-row clearfix">
-          <input type="email" class="form-control" id="email" placeholder="Enter your building name or street name">
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter your building name or street name">
         </div>
         <div class="form-row clearfix">
-          <input type="text" class="form-control city" id="" placeholder="Enter City">
-          <input type="text" class="form-control country" id="" placeholder="Enter Country">
+          <input type="text" class="form-control city" id="city" name="city" placeholder="Enter City">
+          <input type="text" class="form-control country" id="country" name="country" placeholder="Enter Country">
           <input type="submit" class="form-submit" id="" value="">
         </div>
+      </form>
       </div>
     </div>
 </div>
@@ -58,9 +60,10 @@
     </div>
     </div>
     </section>
-    <strong>Search Result <%= @versions.count %> Rooms</strong> 
+    <strong>Search Result <%= @versions.present? ? @versions.count : "0" %> Rooms</strong> 
 </div>
 <div class="container">
+  <% if @versions.present? %>
   <% @versions.each do |version|%>
     <article class="prodect-item">
       <div class="row">
@@ -82,6 +85,7 @@
     </article>
   <% end %>
   <%= will_paginate @versions %>
+  <% end %>
 </div>
   <!-- <article class="prodect-item">
     <div class="row">

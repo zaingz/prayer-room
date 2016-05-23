@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'admin/reports/spam' => 'admin#spam'
 
   get 'room/search' => 'search#search_by_name'
-  get 'room/search_all' => 'search#search'
+  post 'room/search_all' => 'search#search'
   get 'admin/search/user' => 'search#user'
   get 'room/voteup/:id' => 'versions#voteup' ,:as => 'voteup'
   get 'admin/search/entries' => 'search#entries'

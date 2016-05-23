@@ -4,11 +4,12 @@ class SearchController < ApplicationController
 	end
 
 	def search
-		@version = Version.all
+		p params
+		@version = Version.approved
 		@version = @version.where(:name => params[:name]) if params[:name].present?
 		@version = @version.where(:city => params[:city]) if params[:city].present?
 		@version = @version.where(:country => params[:country]) if params[:country].present?
-		@version
+		redirect_to versions_path(@version)
 	end
 
 	def user

@@ -45,9 +45,9 @@
           <div class="col-md-2 col-sm-12 hidden-sm col-xs-12 hidden-xs">
             <div class="login"> 
             	<% if user_signed_in? %>
-					<%= current_user.username %>
-					<%= link_to 'SignOut', destroy_user_session_path , method: :delete%>
-				<% else %> 
+      					<%= current_user.username %>
+      					<%= link_to 'SignOut', destroy_user_session_path , method: :delete%>
+				      <% else %> 
 	            	<%= link_to 'Register', new_user_registration_path %>
 	            	<a class="active" data-toggle="modal" data-target="#myModal">Login</a>
             	<% end %>
