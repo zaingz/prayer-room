@@ -160,21 +160,26 @@
         	<span class="title">or</span>
         </div>
 
-    <form action="<%= user_session_path %>" method="post">
-       <div class="form-row clearfix">
-       	<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
-       </div>
-        <div class="form-row clearfix">
-        	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-row clearfix">
-          <input type="submit" class="form-login" id="submit" placeholder="" value="Log in">
-        </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-row clearfix">
+        <%= f.email_field :email, autofocus: true , class: "form-control" , placeholder: "Email Address" %>
+      </div>
+
+      <div class="form-row clearfix">
+        <%= f.password_field :password, autocomplete: "off" , class: "form-control" , placeholder: "Password" %>
+      </div>
+
+      <div class="form-row clearfix actions">
+        <%= f.submit "Log in" , class: "form-login" %>
+      </div>
+    <% end %>
+
+
+
         <div class="form-row clearfix">
           <a href="javascript:;" class="forget-password">Forget password?</a>
-          <p>Don't have an account?<a href="javascript:;" class="sign-up"> Sign up</a></p>
+          <p>Don't have an account? <a href="<%= new_user_registration_path %>" class="sign-up"> Sign up</a></p>
         </div>
-      </form>
     </div>
 
   </div>
