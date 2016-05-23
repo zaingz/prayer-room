@@ -16,7 +16,7 @@
         <div class="row">
           <div class="col-md-7 col-sm-12 col-xs-12">
           	<div class="logo"> 
-            	<a href="#"><img src="images/logo.png" alt="image description"></a> 
+            	<a href="#"><%= image_tag("logo.png", :alt => "Logo") %></a> 
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -67,9 +67,9 @@
         <div class="col-md-2 col-sm-4 col-xs-4">
           <span>get in touch</span>
           <div class="social-icon"> 
-          	<a href="https://www.facebook.com/"><img src="images/icon05_03.png"></a> 
-            <a href="https://www.twitter.com/"><img src="images/icon04_03.png"></a> 
-            <a href="https://www.google.com/"><img src="images/icon03_03.png"></a> 
+          	<a href="https://www.facebook.com/"><%= image_tag("icon05_03.png", :alt => "FB") %></a> 
+            <a href="https://www.twitter.com/"><%= image_tag("icon04_03.png", :alt => "TW") %></a> 
+            <a href="https://www.google.com/"><%= image_tag("icon03_03.png", :alt => "GOO") %></a> 
           </div>
           <span>contact us</span> 
           <span>terms and condition</span> 
@@ -151,27 +151,30 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="form-row clearfix">
-        	<a href="<%= user_google_oauth2_omniauth_authorize_path %>"><img src="images/google.jpg"></a>
+        	<a href="<%= user_google_oauth2_omniauth_authorize_path %>"><%= image_tag("google.jpg", :alt => "Google") %></a>
         </div>
         <div class="form-row clearfix">
-        	<a href="<%= user_facebook_omniauth_authorize_path %>"><img src="images/facebook.jpg"></a>
+        	<a href="<%= user_facebook_omniauth_authorize_path %>"><%= image_tag("facebook.jpg", :alt => "Facebook") %></a>
         </div>
         <div class="form-row or-line">
         	<span class="title">or</span>
         </div>
-     <div class="form-row clearfix">
-     	<input type="email" class="form-control" id="email" placeholder="Email Address">
-     </div>
-      <div class="form-row clearfix">
-      	<input type="email" class="form-control" id="email" placeholder="Password">
-      </div>
-      <div class="form-row clearfix">
-        <input type="submit" class="form-login" id="email" placeholder="" value="Log in">
-      </div>
-      <div class="form-row clearfix">
-        <a href="javascript:;" class="forget-password">Forget password?</a>
-        <p>Don't have an account?<a href="javascript:;" class="sign-up"> Sign up</a></p>
-      </div>
+
+    <form action="<%= user_session_path %>" method="post">
+       <div class="form-row clearfix">
+       	<input type="email" class="form-control" id="email" name="email" placeholder="Email Address">
+       </div>
+        <div class="form-row clearfix">
+        	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-row clearfix">
+          <input type="submit" class="form-login" id="submit" placeholder="" value="Log in">
+        </div>
+        <div class="form-row clearfix">
+          <a href="javascript:;" class="forget-password">Forget password?</a>
+          <p>Don't have an account?<a href="javascript:;" class="sign-up"> Sign up</a></p>
+        </div>
+      </form>
     </div>
 
   </div>
