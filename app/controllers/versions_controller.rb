@@ -43,8 +43,17 @@ class VersionsController < ApplicationController
       if params[:photo].present?
         if @version.save
           @version.update(room_id: @room.id)
-          params[:photo]['image'].each do |a|
-            @photo = @version.photos.create!(:image => a, :version_id => @version.id)
+          if params[:photo]['image']['0'].present?
+            @photo = @version.photos.create!(:image => params[:photo]['image']['0'], :version_id => @version.id)
+            if params[:photo]['image']['1'].present?
+              @photo = @version.photos.create!(:image => params[:photo]['image']['1'], :version_id => @version.id)
+              if params[:photo]['image']['2'].present?
+                @photo = @version.photos.create!(:image => params[:photo]['image']['2'], :version_id => @version.id)
+                if params[:photo]['image']['3'].present?
+                  @photo = @version.photos.create!(:image => params[:photo]['image']['3'], :version_id => @version.id)
+                end
+              end
+            end
           end
           format.html { redirect_to @version, notice: 'Version was successfully created.' }
           format.json { render :show, status: :created, location: @version }
@@ -73,13 +82,30 @@ class VersionsController < ApplicationController
         respond_to do |format|
           if version.save
             if params[:photo].present?
-              params[:photo]['image'].each do |a|
-                @photo = version.photos.create!(:image => a, :version_id => version.id)
+              if params[:photo]['image']['0'].present?
+                photo = version.photos.create!(:image => params[:photo]['image']['0'], :version_id => version.id)
+                if params[:photo]['image']['1'].present?
+                  photo = version.photos.create!(:image => params[:photo]['image']['1'], :version_id => version.id)
+                  if params[:photo]['image']['2'].present?
+                    photo = version.photos.create!(:image => params[:photo]['image']['2'], :version_id => version.id)
+                    if params[:photo]['image']['3'].present?
+                      photo = version.photos.create!(:image => params[:photo]['image']['3'], :version_id => version.id)
+                    end
+                  end
+                end
+              else
+                @version.photos.each do |a|
+                  p a
+                  photo = version.photos.create!(:image => a, :version_id => @version.id)
+                end
               end
             else
-              
+              @version.photos.each do |a|
+                p a
+                photo = version.photos.create!(:image => a, :version_id => @version.id)
+              end
             end
-            format.html { redirect_to :back, notice: 'Version was successfully updated.' }
+            format.html { redirect_to version_path, notice: 'Version was successfully updated.' }
             format.json { render :show, status: :ok, location: version }
           else
             format.html { render :edit }
@@ -87,7 +113,7 @@ class VersionsController < ApplicationController
           end
         end
       else
-        redirect_to :back, notice: 'Updated version of room is already present.'
+        redirect_to root_path, notice: 'Updated version of room is already present.'
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= form_for(@version) do |f| %>
+<!-- <%= form_for(@version) do |f| %>
   <% if @version.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@version.errors.count, "error") %> prohibited this version from being saved:</h2>
@@ -51,4 +51,144 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+<% end %> -->
+
+
+
+
+      <div class="r-content clearfix">
+      <div class="container r-container">
+          <h3>Fill up to add your entry</h3>
+          <div class="row">
+            <%= form_for(@version)  do |f| %>
+            <% if @version.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@version.errors.count, "error") %> prohibited this version from being saved:</h2>
+
+                <ul>
+                <% @version.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-border">
+                          <div class="row border">
+                              <div class="col-md-12">
+                                  <%= f.label :name  , "Building Name"%>
+                                  <%= f.text_field :name , class: "form-control-r"%>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-5">
+                                  <%= f.label :street , "Street"%>
+                                  <%= f.text_field :street , class: "form-control-r"%>
+                                </div>
+                                <div class="col-md-2">
+                                  <%= f.label :floor , "Floor No"%>
+                                  <%= f.text_field :floor , class: "form-control-r" %>
+                                </div>
+                                <div class="col-md-5">
+                                  <%= f.label :name_d  , "Building Name"%>
+                                  <%= f.text_field :name_d , class: "form-control-r"%>
+                                </div>
+                            </div>
+                            <div class="row border">
+                              <div class="col-md-4">
+                                  <%= f.label :city , "City"%>
+                                  <%= f.text_field :city , class: "form-control-r"%>
+                                </div>
+                                <div class="col-md-4">
+                                  <%= f.label :country , "Country"%>
+                                  <%= f.text_field :country , class: "form-control-r"%>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <%= f.label :description , "Description" %>
+                                  <%= f.text_area :description , class: "form-control-comment" , rows: "5" %>
+                                </div>
+                            </div>
+                    </div>
+              </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="form-border">
+                          <div class="row">
+                                <div class="col-md-12">
+                                    <%= f.label :direction , "DIRECTIONS/ HOW TO GET HERE" %>
+                                    <%= f.text_area :direction , class: "form-control-dir" , rows: "5" %>
+                                </div>
+                            </div>
+                            <div class="row border">
+                              <div class="col-md-9">
+                                  <%= f.label :link , "YouTube Link"%>
+                                  <%= f.text_field :link , class: "form-control-r"%>
+                                </div>
+                                <div class="col-md-3">
+                                  <a class="youtube" href="#">FETCH</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <label for="usr">Upload Photo</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                    <span class="file-wrapper">
+                                        
+                                        <%= f.file_field :photo_attributes, :id => "uploadBtn" , :class => "upload" , name: "photo[image][0]" %>
+                                        <% if  @version.photos.first.present? %>
+                                          <%= image_tag(@version.photos.first.image_url , class: "show_image_page") %>
+                                        <% else %>
+                                          <span class="button">Choose a Photo</span>
+                                        <% end %>
+
+                                  </span>
+                                    <span class="file-wrapper">
+                                      <%= f.file_field :photo_attributes, :id => "uploadBtn" , :class => "upload" , name: "photo[image][1]" %>
+                                      <% if  @version.photos.second.present? %>
+                                        <%= image_tag(@version.photos.second.image_url , class: "show_image_page") %>
+                                      <% else %>
+                                        <span class="button">Choose a Photo</span>
+                                      <% end %>
+                                  </span>
+                                    <span class="file-wrapper">
+                                    <%= f.file_field :photo_attributes, :id => "uploadBtn" , :class => "upload" , name: "photo[image][2]" %>
+                                    <% if  @version.photos.third.present? %>
+                                      <%= image_tag(@version.photos.third.image_url , class: "show_image_page") %>
+                                    <% else %>
+                                      <span class="button">Choose a Photo</span>
+                                    <% end %>
+                                  </span>
+                                    <span class="file-wrapper">
+                                    <%= f.file_field :photo_attributes, :id => "uploadBtn" , :class => "upload" , name: "photo[image][3]" %>
+                                    <% if  @version.photos.fourth.present? %>
+                                      <%= image_tag(@version.photos.fourth.image_url , class: "show_image_page") %>
+                                    <% else %>
+                                      <span class="button">Choose a Photo</span>
+                                    <% end %>
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                <label for="usr">Feature Photo</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-6"></div>
+                                <div class="col-md-3">
+                                  <%= f.submit 'SAVE' , :class => "youtube" %> 
+                                </div>
+                                <div class="col-md-3">
+                                  <a class="youtube" href="<%= root_path %>">CANCEL</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>

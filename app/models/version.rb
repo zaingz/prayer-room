@@ -13,4 +13,6 @@ class Version < ActiveRecord::Base
 	scope :better , lambda{where.not(typ: 'newly')}
 	scope :decending , lambda{ order(created_at: :desc)}
 
+	attr_accessor :name_d
+
 end

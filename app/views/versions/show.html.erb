@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<!--
 <p>
   <strong>Name:</strong>
   <%= @version.name %>
@@ -43,3 +43,106 @@
 <%= link_to 'Edit', edit_version_path(@version) %> |
 <%= link_to 'Back', :back %>
 <%= link_to 'Report', report_path %>
+
+-->
+
+
+
+<div class="r-content clearfix">
+      <div class="container r-container">
+          <div class="row">
+              <div class="col-md-7">
+                  <div class="parkway">
+                    <h3><%= @version.name %> <span>(<%= @version.country %>)</span></h3>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="entry">
+                    <a href="<%= edit_version_path %>" class="edit-entry">edit this entry</a>
+                      <a href="<%= new_version_path %>" class="add-entry"><span class="glyphicon glyphicon-plus"></span>add entry</a>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-6 col-sx-12">
+                  <div class="form-border-box clearfix">
+                    <div class="bookmark">
+                      <a href="#">bookmark</a>
+                    </div>
+                      <h2><strong>Location Address:</strong><%= @version.street %> <%= @version.city %>, <%= @version.country %></h2>
+                        <p><%= @version.name %>, level <%= @version.floor %> at <%= @version.name %> (<%= @version.direction %>)<br><%= @version.description %>
+                        </p>
+                        <span class="checkin">Check In<span class="dotes">: </span><span><%= @version.room.checkins.count %></span></span>
+                        <span class="post">Date Posted<span class="dotes">:</span><span><%= @version.created_at.strftime("%d-%m-%Y") %></span></span> 
+                        <span class="status">Status<span class="dotes">:</span><span><%= @version.reports.count<5 ? "Available" : "Unavailable"  %></span></span>
+                        <div class="share-icon">
+                          <strong>Share This</strong>
+                          <a href="https://www.facebook.com/"><%= image_tag("facebook-icon.png", :alt => "FB") %></a> 
+                        <a href="https://www.twitter.com/"><%= image_tag("twitter-icon.png", :alt => "TW") %></a> 
+                        <a href="https://www.google.com/"><%= image_tag("google-icon.png", :alt => "GOO") %></a>
+                        </div>
+                        <div class="voteup">
+                          <strong>vote up +1</strong>
+                            <div class="voteup-main">
+                              <a href="<%= voteup_path %>" class="photo"><%= image_tag("icon_07.png", :alt => "ICON") %></a>
+                                <div class="detail">
+                                <p>This entry has been edited and has an alternate
+version (Check below), Help us improve our list!, if you
+find this accurate and helpful then please
+vote this up to replace the other one</p>
+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-sx-12">
+                  <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="tabs-1">
+                      <li class=""><a href="#home-test-new">map</a></li>
+                      <li class="active"><a href="#direction">get here</a></li>
+                      <li class=""><a href="#messages-test-new">video</a></li>
+                      <li class=""><a href="#fourth-test-new">report</a></li>
+                  </ul>
+                  <div id="direction" class="form-border">
+                      <p><%= @version.direction %></p>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="galary">
+                    <% if @version.photos.first.present? %>
+                      <img src="<%= @version.photos.first.image_url %>">
+                    <% else %>
+                      <%= image_tag("img10.jpg", :alt => "ICON") %>
+                    <% end %>
+                </div>
+            </div>
+          <div class="col-md-4">
+              <div class="galary">
+                  <% if @version.photos.second.present? %>
+                    <img src="<%= @version.photos.second.image_url %>">
+                  <% else %>
+                    <%= image_tag("img11.jpg", :alt => "ICON") %>
+                  <% end %>
+                </div>
+            </div>
+          <div class="col-md-4">
+              <div class="galary">
+                  <% if @version.photos.third.present? %>
+                    <img src="<%= @version.photos.third.image_url %>">
+                  <% else %>
+                    <%= image_tag("img12.jpg", :alt => "ICON") %>
+                  <% end %>
+                </div>
+            </div>
+      </div>
+        </div>
+        <div class="container">
+        <div class="org-btn">
+          <a class="active" href="<%= version_path(@version.room.versions.first) %>">original</a>
+            <% if @version.room.versions.count > 1 %>
+              <a href="<%= version_path(@version.room.versions.last) %>">edited</a>
+            <% end %>
+            </div>
+      </div>
+    </div>
