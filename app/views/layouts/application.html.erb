@@ -10,13 +10,13 @@
 </head>
 
 <body>
-<div id="wrapper">
+  <div id="wrapper">
     <div class="header-nav">
       <div class="container">
         <div class="row">
           <div class="col-md-7 col-sm-12 col-xs-12">
           	<div class="logo"> 
-            	<a href="#"><%= image_tag("logo.png", :alt => "Logo") %></a> 
+            	<a href="#"><%= image_tag("logo.png", :alt => "Logo" , width: '152' , height: 'auto') %></a> 
             </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,7 +48,7 @@
       					<%= current_user.username %>
       					<%= link_to 'SignOut', destroy_user_session_path , method: :delete%>
 				      <% else %> 
-	            	<%= link_to 'Register', new_user_registration_path %>
+	            	 <a class="active" data-toggle="modal" data-target="#myModal-second">Register</a> 
 	            	<a class="active" data-toggle="modal" data-target="#myModal">Login</a>
             	<% end %>
             </div>
@@ -56,6 +56,7 @@
         </div>
       </div>
     </div>
+
 
     <%= yield %>
 
@@ -185,5 +186,52 @@
   </div>
 </div>
 </div>
+
+
+<!-- Modal second -->
+  <div id="myModal-second" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="form-row clearfix">
+                    <a href="<%= user_google_oauth2_omniauth_authorize_path %>"><%= image_tag("google.jpg", :alt => "Google") %></a>
+                </div>
+                <div class="form-row clearfix">
+                   <a href="<%= user_facebook_omniauth_authorize_path %>"><%= image_tag("facebook.jpg", :alt => "Facebook") %></a>
+                </div>
+                <div class="form-row or-line">
+                    <span class="title">or</span>
+                </div>
+                <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+
+                  <div class="form-row clearfix">
+                      <%= f.email_field :email, autofocus: true , class: "form-control" , placeholder: "Email" %>
+                  </div>
+                  <div class="form-row clearfix">
+                      <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                      <% end %><br />
+                      <%= f.password_field :password, autocomplete: "off" , class: "form-control" , placeholder: "Password"%>
+                  </div>
+                  <div class="form-row clearfix">
+                      <%= f.password_field :password_confirmation, autocomplete: "off" , class: "form-control" , placeholder: "Confirm Password"%>
+                  </div>
+                  <div class="form-row clearfix">
+                      <%= f.submit "Sign up" , class: "sign-up-first"%>
+                  </div>
+                  <div class="form-row clearfix">
+                      <div class="checkbox">
+                          <label><input type="checkbox" value=""><p>Remember My Password</p></label>
+                      </div>
+                  </div>
+                <% end %>
+              </div>
+        </div>
+    </div>
+  </div>
 </body>
 </html>

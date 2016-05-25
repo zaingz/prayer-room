@@ -150,8 +150,12 @@ vote this up to replace the other one</p>
                       </div>
                       <div id="video" class="tab-pane fade">
                         <% if @version.link.present? %>
-                          <% url =  @version.link.split('watch?v=', @version.link.length) %>
-                          <% p source = "https://www.youtube.com/embed/"+url[1]+"?rel=0" %>
+                          <% if @version.link.include? "watch?v=" %>
+                            <% url =  @version.link.split('watch?v=', @version.link.length) %>
+                            <% p source = "https://www.youtube.com/embed/"+url[1]+"?rel=0" %>
+                          <% else %>
+                            <% source =  "https://www.youtube.com/embed/" %>
+                          <% end %>
                         <% else %>
                           <% source =  "https://www.youtube.com/embed/" %>
                         <% end %>
@@ -179,27 +183,27 @@ vote this up to replace the other one</p>
             <div class="col-md-4">
                 <div class="galary">
                     <% if @version.photos.first.present? %>
-                      <img src="<%= @version.photos.first.image_url %>">
+                      <img src="<%= @version.photos.first.image_url %>" width="334" height="253" >
                     <% else %>
-                      <%= image_tag("img10.jpg", :alt => "ICON") %>
+                      <%= image_tag("img10.jpg", height: '253', width: '334' , :alt => "ICON") %>
                     <% end %>
                 </div>
             </div>
           <div class="col-md-4">
               <div class="galary">
                   <% if @version.photos.second.present? %>
-                    <img src="<%= @version.photos.second.image_url %>">
+                    <img src="<%= @version.photos.second.image_url %>" width="334" height="253">
                   <% else %>
-                    <%= image_tag("img11.jpg", :alt => "ICON") %>
+                    <%= image_tag("img11.jpg", height: '253', width: '334' , :alt => "ICON") %>
                   <% end %>
                 </div>
             </div>
           <div class="col-md-4">
               <div class="galary">
                   <% if @version.photos.third.present? %>
-                    <img src="<%= @version.photos.third.image_url %>">
+                    <img src="<%= @version.photos.third.image_url %>" width="334" height="253">
                   <% else %>
-                    <%= image_tag("img12.jpg", :alt => "ICON") %>
+                    <%= image_tag("img12.jpg", height: '253', width: '334' , :alt => "ICON") %>
                   <% end %>
                 </div>
             </div>
