@@ -97,15 +97,83 @@ vote this up to replace the other one</p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-sx-12">
                   <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="tabs-1">
-                      <li class=""><a href="#home-test-new">map</a></li>
-                      <li class="active"><a href="#direction">get here</a></li>
-                      <li class=""><a href="#messages-test-new">video</a></li>
-                      <li class=""><a href="#fourth-test-new">report</a></li>
+                      <li class="active"><a data-toggle="tab" href="#map">map</a></li>
+                      <li class=""><a data-toggle="tab" href="#direction">get here</a></li>
+                      <li class=""><a data-toggle="tab" href="#video">video</a></li>
+                      <li class=""><a data-toggle="tab" href="#report">report</a></li>
                   </ul>
-                  <div id="direction" class="form-border">
-                      <p><%= @version.direction %></p>
+                  <div class="form-border">
+                    <div class="tab-content">
+                      <div id="map" class="tab-pane fade in active">
+                        <script src="http://maps.googleapis.com/maps/api/js"></script>
+                        <!-- <script>
+                        function initialize() {
+                          var mapProp = {
+                            center:new google.maps.LatLng(51.508742,-0.120850),
+                            zoom:14,
+                            mapTypeId:google.maps.MapTypeId.ROADMAP
+                          };
+                          var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+                        }
+                        google.maps.event.addDomListener(window, 'load', initialize);
+                        </script> -->
+<script type="text/javascript"> 
+
+   var address = '<%= @version.name%>, <%= @version.street%>, <%= @version.city%>, <%= @version.country%>';
+
+   var map = new google.maps.Map(document.getElementById('map'), { 
+       mapTypeId: google.maps.MapTypeId.ROADMAP,
+       zoom: 14
+   });
+
+   var geocoder = new google.maps.Geocoder();
+
+   geocoder.geocode({
+      'address': address
+   }, 
+   function(results, status) {
+      if(status == google.maps.GeocoderStatus.OK) {
+         new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map
+         });
+         map.setCenter(results[0].geometry.location);
+      }
+   });
+
+   </script> 
+                        <div id="googleMap" style="width:inherit;height:230px;"></div>
+                      </div>
+                      <div id="direction" class="tab-pane fade">
+                        <br>
+                        <p><%= @version.direction %></p>
+                      </div>
+                      <div id="video" class="tab-pane fade">
+                        <% if @version.link.present? %>
+                          <% url =  @version.link.split('watch?v=', @version.link.length) %>
+                          <% p source = "https://www.youtube.com/embed/"+url[1]+"?rel=0" %>
+                        <% else %>
+                          <% source =  "https://www.youtube.com/embed/" %>
+                        <% end %>
+                        <iframe width="420px" height="227px" src="<%= source %>" allowfullscreen></iframe>
+                      </div>
+                      <div id="report" class="tab-pane fade">
+                        <h4>Prayer area no longer exist? Help us update this entry</h4>
+                        <%= form_tag( action: "creport") do%>
+                          <%= radio_button_tag(:status, "0") %>
+                          <%= label_tag(:status_child, "Prayer room no longer exist") %><br>
+                          <%= radio_button_tag(:status, "1") %>
+                          <%= label_tag(:status_adult, "Prayer room under renovation") %><br>
+                          <%= radio_button_tag(:status, "2") %>
+                          <%= label_tag(:status_adult, "Inappropiate content") %><br>
+                          <%= submit_tag "Report" , :class => "youtube" %>
+                        <% end %>
+                      </div>
                     </div>
+                  </div>
                 </div>
+
+                
             </div>
         <div class="row">
             <div class="col-md-4">
