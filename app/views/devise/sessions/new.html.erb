@@ -1,26 +1,43 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="r-content clearfix">
+      <div class="container r-container">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name) , class: "form-control-static") do |f| %>
+              <div class="main">
+                  <div class="row">
+                    <div class="col-md-3">
+                        <label for="usr">Email :</label>
+                        </div>
+                        <div class="col-md-9">
+                          <%= f.email_field :email, autofocus: true , class: "form-control-r" , placeholder: "Type your email" %>
+                        </div>
+                        </div>
+                    <div class="row">
+                    <div class="col-md-3">
+                        <label for="usr">Password :</label>
+                        </div>
+                        <div class="col-md-9">
+                          <%= f.password_field :password, autocomplete: "off" , class: "form-control-r" , placeholder: "Type your password"  %>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 col-md-offset-5">
+                        <%= f.submit "Log in" , class: "youtube" %>
+                      </div>
+                    </div>
+                    <div class="form-row or-line-sign">
+                        <span class="title">or</span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-9 col-md-offset-3">
+                        <a href="<%= user_google_oauth2_omniauth_authorize_path %>"><%= image_tag("google.jpg",  :alt => "Google") %></a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-9 col-md-offset-3" style="margin-top: 5px;">
+                        <a href="<%= user_facebook_omniauth_authorize_path %>"><%= image_tag("facebook.jpg", :alt => "Facebook") %></a>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

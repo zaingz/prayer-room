@@ -49,7 +49,7 @@
       					<%= link_to 'SignOut', destroy_user_session_path , method: :delete%>
 				      <% else %> 
 	            	 <a class="active" data-toggle="modal" data-target="#myModal-second">Register</a> 
-	            	<a class="active" data-toggle="modal" data-target="#myModal">Login</a>
+	            	<a class="active" data-toggle="modal" data-target="#myModal">Login </a>
             	<% end %>
             </div>
           </div>
@@ -178,8 +178,9 @@
 
 
         <div class="form-row clearfix">
-          <a href="javascript:;" class="forget-password">Forget password?</a>
-          <p>Don't have an account? <a href="<%= new_user_registration_path %>" class="sign-up"> Sign up</a></p>
+          <p><a data-dismiss="modal" data-toggle="modal" href="#forgot" class="forget-password">Forgot your password?</a></p>
+          <p>Don't have an account? <a data-dismiss="modal" data-toggle="modal" href="#myModal-second" class="sign-up"> Sign up</a></p>
+
         </div>
     </div>
 
@@ -229,6 +230,47 @@
                       </div>
                   </div>
                 <% end %>
+              </div>
+        </div>
+    </div>
+  </div>
+
+
+  <!-- Modal forgot -->
+  <div id="forgot" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="form-row clearfix">
+                    <a href="<%= user_google_oauth2_omniauth_authorize_path %>"><%= image_tag("google.jpg", :alt => "Google") %></a>
+                </div>
+                <div class="form-row clearfix">
+                   <a href="<%= user_facebook_omniauth_authorize_path %>"><%= image_tag("facebook.jpg", :alt => "Facebook") %></a>
+                </div>
+                <div class="form-row or-line">
+                    <span class="title">or</span>
+                </div>
+
+                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                    <%= devise_error_messages! %>
+
+                    <div class="form-row clearfix">
+                      <%= f.email_field :email, autofocus: true , class: "form-control" , placeholder: "Email" %>
+                    </div>
+
+                    <div class="form-row clearfix">
+                      <%= f.submit "Send me reset password instructions" , class: "sign-up-first"%>
+                    </div>
+                  <% end %>
+
+                  <div class="form-row clearfix">
+                    <p>Already have an account? <a data-dismiss="modal" data-toggle="modal" href="#myModal" class="sign-up"> Sign in</a></p>
+                    <p>Don't have an account? <a data-dismiss="modal" data-toggle="modal" href="#myModal-second" class="sign-up"> Sign up</a></p>
+
+                  </div>
               </div>
         </div>
     </div>
