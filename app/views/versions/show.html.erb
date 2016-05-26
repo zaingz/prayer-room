@@ -211,9 +211,9 @@ vote this up to replace the other one</p>
         </div>
         <div class="container">
         <div class="org-btn">
-          <a class="active" href="<%= version_path(@version.room.versions.first) %>">original</a>
+          <a class="<%= @version.room.versions.first.id==@version.id ? "active" : "" %>" href="<%= version_path(@version.room.versions.first) %>">original</a>
             <% if @version.room.versions.count > 1 %>
-              <a href="<%= version_path(@version.room.versions.last) %>">edited</a>
+              <a class="<%= @version.room.versions.last.id==@version.id ? "active" : "" %>" href="<%= version_path(@version.room.versions.last) %>">edited</a>
             <% end %>
             </div>
       </div>

@@ -4,7 +4,7 @@ class Version < ActiveRecord::Base
 	has_many :photos , dependent: :destroy
 	accepts_nested_attributes_for :photos
 	has_many :reports , dependent: :destroy
-	has_many :voteups
+	has_many :voteups , dependent: :destroy
 	belongs_to :room
 
 	scope :pending , lambda {where(:status => 0)}

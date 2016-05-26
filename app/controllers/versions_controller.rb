@@ -96,13 +96,13 @@ class VersionsController < ApplicationController
               else
                 @version.photos.each do |a|
                   p a
-                  photo = version.photos.create!(:image => a, :version_id => @version.id)
+                  photo = version.photos.create!(:image => a, :version_id => version.id)
                 end
               end
             else
               @version.photos.each do |a|
                 p a
-                photo = version.photos.create!(:image => a, :version_id => @version.id)
+                photo = version.photos.create!(:image => a, :version_id => version.id)
               end
             end
             format.html { redirect_to version_path, notice: 'Version was successfully updated.' }

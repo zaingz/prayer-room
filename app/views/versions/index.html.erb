@@ -2,7 +2,7 @@
 <div class="header-main"> 
     <div class="container">
       <div class="search-box"> <span>Finding A</span> <strong>Prayer Place</strong> <span>Made Simple</span>
-      <form action="<%= versions_path %>" method="get">
+      <form action="<%= versions_path %>#result" method="get">
         <div class="form-row clearfix">
           <input type="text" class="form-control" id="name" name="name" placeholder="Enter your building name or street name">
         </div>
@@ -60,7 +60,7 @@
     </div>
     </div>
     </section>
-    <strong>Search Result <%= @versions.present? ? @versions.count : "0" %> Rooms</strong> 
+    <strong id="result">Search Result <%= @versions.present? ? @versions.count : "0" %> Rooms</strong> 
 </div>
 <div class="container">
   <% if @versions.present? %>

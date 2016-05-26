@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook , :google_oauth2]
 	enum role: [:end_user , :admin]
   enum status: [:suspended , :active]
-	has_many :rooms
-  has_many :reports, :as => 'reporter'
-  has_many :checkins
-  has_many :voteups
+	has_many :rooms , dependent: :destroy
+  has_many :reports, :as => 'reporter' , dependent: :destroy
+  has_many :checkins , dependent: :destroy
+  has_many :voteups , dependent: :destroy
 
 	def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
