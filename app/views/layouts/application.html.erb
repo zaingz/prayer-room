@@ -82,8 +82,8 @@
           <div class="list-group-item">
             <span>recent post</span>
             <% if Room.last.present? %>
-	            <% if Room.last.versions.last.present? %>
-	            	<% @roomL = Room.last.versions.last %>
+	            <% if Room.last.versions.first.present? %>
+	            	<% @roomL = Room.last.versions.first %>
 		            <div class="photo"> 
 		            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
 		            </div>
@@ -96,8 +96,8 @@
           </div>
           <div class="list-group-item">
           <% if Room.decending.third.present? %>
-          	<% if Room.decending.third.versions.last.present? %>
-            	<% @roomL = Room.decending.third.versions.last %>
+          	<% if Room.decending.third.versions.first.present? %>
+            	<% @roomL = Room.decending.third.versions.first %>
 	            <div class="photo"> 
 	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
 	            </div>
@@ -112,8 +112,8 @@
         <div class="col-md-5 col-sm-8 hidden-sm col-xs-6 hidden-xs">
           <div class="list-group-item">
           <% if Room.decending.second.present? %>
-          	<% if Room.decending.second.versions.last.present? %>
-            	<% @roomL = Room.decending.second.versions.last %>
+          	<% if Room.decending.second.versions.first.present? %>
+            	<% @roomL = Room.decending.second.versions.first %>
 	            <div class="photo"> 
 	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption">
 	            </div>
@@ -126,8 +126,8 @@
           </div>
           <div class="list-group-item">
           <% if Room.decending.fourth.present? %>
-          	<% if Room.decending.fourth.versions.last.present? %>
-            	<% @roomL = Room.decending.fourth.versions.last %>
+          	<% if Room.decending.fourth.versions.first.present? %>
+            	<% @roomL = Room.decending.fourth.versions.first %>
 	            <div class="photo"> 
 	            	<img src="<%= @roomL.photos.first.image_url %>" width="91" height="79" alt="image descraption"> 
 	            </div>

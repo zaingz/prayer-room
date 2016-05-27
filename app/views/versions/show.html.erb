@@ -97,7 +97,7 @@ vote this up to replace the other one</p>
                 </div>
                 <div class="col-md-6 col-sm-6 col-sx-12">
                   <ul class="nav nav-tabs responsive hidden-xs hidden-sm" id="tabs-1">
-                      <li class="active"><a data-toggle="tab" href="#map">map</a></li>
+                      <li class="active"><a data-toggle="tab" href="#map" onclick="reload();">map</a></li>
                       <li class=""><a data-toggle="tab" href="#direction">get here</a></li>
                       <li class=""><a data-toggle="tab" href="#video">video</a></li>
                       <li class=""><a data-toggle="tab" href="#report">report</a></li>
@@ -218,3 +218,9 @@ vote this up to replace the other one</p>
             </div>
       </div>
     </div>
+
+<script>
+function reload() {
+    location.reload();
+}
+</script>

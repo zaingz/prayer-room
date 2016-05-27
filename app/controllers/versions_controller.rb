@@ -9,7 +9,7 @@ class VersionsController < ApplicationController
       redirect_to admin_room_entries_path if current_user.role == 'admin'
     end
     
-    @versions = Version.approved.paginate(:page => params[:page], :per_page => 4)
+    @versions = Version.approved.orignal.paginate(:page => params[:page], :per_page => 4)
 
     p params
     if params[:name].present? || params[:city].present? || params[:country].present?
@@ -17,6 +17,8 @@ class VersionsController < ApplicationController
       @versions = @versions.where(city: params[:city]) if params[:city]!=""
       @versions = @versions.where(country: params[:country]) if params[:country]!=""
     end
+
+    p "Photo: " + @versions.first.photos.first.image.inspect
   end
 
   # GET /versions/1
@@ -95,14 +97,14 @@ class VersionsController < ApplicationController
                 end
               else
                 @version.photos.each do |a|
-                  p a
-                  photo = version.photos.create!(:image => a, :version_id => version.id)
+                  p a.image
+                  photo = version.photos.create!(:image => a.image, :version_id => version.id)
                 end
               end
             else
               @version.photos.each do |a|
-                p a
-                photo = version.photos.create!(:image => a, :version_id => version.id)
+                p a.image
+                photo = version.photos.create!(:image => a.image, :version_id => version.id)
               end
             end
             format.html { redirect_to version_path, notice: 'Version was successfully updated.' }
