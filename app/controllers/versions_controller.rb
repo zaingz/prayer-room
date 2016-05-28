@@ -97,14 +97,18 @@ class VersionsController < ApplicationController
                 end
               else
                 @version.photos.each do |a|
-                  p a.image
-                  photo = version.photos.create!(:image => a.image, :version_id => version.id)
+                  p "Maza A Gya"
+                  photo = a.dup
+                  photo.save
+                  photo.update(version_id: version.id)
                 end
               end
             else
               @version.photos.each do |a|
-                p a.image
-                photo = version.photos.create!(:image => a.image, :version_id => version.id)
+                p "Photo attribute not present"
+                photo = a.dup
+                photo.save
+                photo.update(version_id: version.id)
               end
             end
             format.html { redirect_to version_path, notice: 'Version was successfully updated.' }
