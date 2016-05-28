@@ -12,12 +12,14 @@ class VersionsController < ApplicationController
     @versions = Version.approved.orignal.paginate(:page => params[:page], :per_page => 4)
 
     p params
+    @scrol = 'no'
     if params[:name].present? || params[:city].present? || params[:country].present?
+      @scrol = 'yes'
       @versions = @versions.where(name: params[:name]) if params[:name]!=""
       @versions = @versions.where(city: params[:city]) if params[:city]!=""
       @versions = @versions.where(country: params[:country]) if params[:country]!=""
     end
-
+    p @scrol
     p "Photo: " + @versions.first.photos.first.image.inspect
   end
 

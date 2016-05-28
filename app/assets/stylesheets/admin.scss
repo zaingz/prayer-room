@@ -3,6 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "alertify";
+@import "alertify.default";
+
+@import "alertify.bootstrap";
+
+@import "alertify.core";
 
 .dash{
 	height:125vh;

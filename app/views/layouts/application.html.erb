@@ -57,6 +57,17 @@
       </div>
     </div>
 
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <% if name.to_s == 'notice' %>
+      <script type="text/javascript">alertify.success('<%= msg%>');</script>
+      <%else%>
+     <script type="text/javascript">alertify.error('<%= msg%>');</script>
+    <%end%>
+  <% end %>
+<% end %>
+
+
 
     <%= yield %>
 
