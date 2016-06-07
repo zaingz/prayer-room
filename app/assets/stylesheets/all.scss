@@ -146,6 +146,7 @@ ul.nav li a:hover {
 	margin:-117px 0 38px;
 }
 .section img {
+	height:auto;
 	display:block;
 	position:relative;
 }
@@ -404,19 +405,6 @@ button.close {
     padding: 0 0 10px;
     position: relative;
     text-align: center;
-}
-.or-line-sign{
-	margin-top: 15px;
-    padding: 0 0 10px;
-    position: relative;
-    text-align: center;
-}
-.or-line-sign .title{
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 22px;
-    padding: 0 8px;
-    position: relative;
 }
 .or-line:before{
 	background-color: #fff;
@@ -890,10 +878,64 @@ ul.nav-tabs li a:hover {
 }
 
 
+/**** room sign up page ends ****/
 
 
+/**** contact us page begin ****/
 
 
+.c-content {
+	width:100%;
+	overflow:hidden;
+	background:#fff;
+	padding:20px 0;
+	border-bottom:6px solid #15a3e0;
+}
+.contact-us {
+	margin:0 auto;
+	width:556px;
+	text-align:center;
+}
+.contact-us h1{
+	color:#f08f00;
+	font-size:26px;
+}
+.contact-us p {
+	font-size:13px;
+	color:#6f6f6e;
+	line-height:16px;
+	margin:0 0 56px;
+}
+.contact-us h2{
+	color:#009ce0;
+	font-size:28px;
+	line-height:30px;
+}
+.form-control-message {
+	background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    color: #575756;
+    min-height: 180px;
+    margin: 0 auto;
+    width: 100%;
+	min-width: 556px;
+	max-width: 556px;
+	border:1px solid #c0c0c0;
+	margin:0 0 12px;
+}
+.contact-us .form-login {
+	font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-image: none;
+    background-color: #f19a19;
+    border: medium none;
+    cursor: pointer;
+    height: 38px;
+	width:100%;
+	color:#fff;
+}
 
 
 

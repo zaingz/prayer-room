@@ -31,6 +31,8 @@ Rails.application.routes.draw do
   get 'admin/search/entries' => 'search#entries'
   get 'admin/search/submission' => 'search#submission'
 
+  get 'contact' => 'contact#contact'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
