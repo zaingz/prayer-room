@@ -146,7 +146,6 @@ ul.nav li a:hover {
 	margin:-117px 0 38px;
 }
 .section img {
-	height:auto;
 	display:block;
 	position:relative;
 }
@@ -936,6 +935,22 @@ ul.nav-tabs li a:hover {
 	width:100%;
 	color:#fff;
 }
+ 
 
+/**
+ * Privacy Policy
+ */
 
+.footer_links_pray a:hover{
+	text-decoration: none;
+	color: #f19a19;
+}
 
+.footer_links_pray a{
+	text-decoration: none;
+	color: #009ce0;
+}
+
+.privacy-policy-page {
+	text-align: justify;
+}

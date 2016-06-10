@@ -34,9 +34,9 @@
                 <div class="navbar" role="navigation">
                   <div class="navbar-collapse collapse">
                       <ul class="nav-menu nav clearfix">
-                        <li class="active"><%= link_to 'Home', root_path %></li>
-                        <li><%= link_to 'About', contact_path %></li>
-                        <li><%= link_to 'Contact us', contact_path %></li>
+                        <li class="<%= request.original_fullpath=='/'? 'active' : ' ' %>"><%= link_to 'Home', root_path %></li>
+                        <li class="<%= request.original_fullpath=='/contact'? 'active' : ' ' %>" style="margin-right: -5px;"><%= link_to 'About', contact_path  %></li>
+                        <li class="<%= request.original_fullpath=='/contact'? 'active' : ' ' %>"><%= link_to 'Contact us', contact_path %></li>
                      </ul>
                   </div>
                 </div>
@@ -79,15 +79,15 @@
         <div class="col-md-2 col-sm-4 col-xs-4">
           <span>get in touch</span>
           <div class="social-icon"> 
-          	<a href="https://www.facebook.com/"><%= image_tag("icon05_03.png", :alt => "FB") %></a> 
+          	<a href="https://www.facebook.com/MusimPrayerAreaSingapore"><%= image_tag("icon05_03.png", :alt => "FB") %></a> 
             <a href="https://www.twitter.com/"><%= image_tag("icon04_03.png", :alt => "TW") %></a> 
             <a href="https://www.google.com/"><%= image_tag("icon03_03.png", :alt => "GOO") %></a> 
           </div>
-          <span>contact us</span> 
-          <span>terms and condition</span> 
-          <span>privacy policy</span>
+          <span class="footer_links_pray"><%= link_to 'Contact us', contact_path %></span> 
+          <span class="footer_links_pray"><%= link_to 'Terms and Condition', terms_conditions_path %></span> 
+          <span class="footer_links_pray"><%= link_to 'Privacy Policy', privacy_policy_path %></span>
           <span>faq</span>
-          <span>about us</span> 
+          <span class="footer_links_pray"><%= link_to 'About us', contact_path %></span> 
         </div>
         <div class="col-md-5 col-sm-8 col-xs-8">
           <div class="list-group-item">

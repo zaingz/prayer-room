@@ -32,8 +32,8 @@ Rails.application.routes.draw do
   get 'admin/search/submission' => 'search#submission'
 
   get 'contact' => 'contact#contact'
-
-
+  get 'privacy_policy' => 'contact#privacy_policy'
+  get 'terms_conditions' => 'contact#terms_cond'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
