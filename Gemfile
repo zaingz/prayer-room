@@ -27,6 +27,8 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'devise'
 gem 'will_paginate', '~> 3.1.0'
+gem 'yaml_db'
+
 
 gem 'omniauth'
 gem 'omniauth-facebook'
