@@ -20,7 +20,6 @@ class VersionsController < ApplicationController
       @versions = @versions.where(country: params[:country]) if params[:country]!=""
     end
     p @scrol
-    p "Photo: " + @versions.first.photos.first.image.inspect
   end
 
   # GET /versions/1

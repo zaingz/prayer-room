@@ -13,22 +13,27 @@ PrayWhere.com does not guarantee the accuracy of the information provided here. 
                 	<h2>Contact Us</h2>
                 </div>
             </div>
+            <%= form_tag( action: "message" , method: "post") do%>
             <div class="row">
             	<div class="col-md-5">
-                	<input type="email" class="form-control-r" placeholder="your name">
+                	<!-- <input type="text" class="form-control-r" placeholder="your name"> -->
+                    <%= text_field_tag "name" , nil, class: "form-control-r" , placeholder: "your name" %>
                 </div>
                 <div class="col-md-7">
-                	<input type="email" class="form-control-r" placeholder="your email">
+                	<!-- <input type="email" class="form-control-r" placeholder="your email"> -->
+                    <%= email_field_tag "email" , nil, class: "form-control-r" , placeholder: "your email" %>
                 </div>
             </div>
             <div class="row">
             	<div class="col-md-12">
-                	<input type="email" class="form-control-r" placeholder="subject line">
+                	<!-- <input type="text" class="form-control-r" placeholder=""> -->
+                    <%= text_field_tag "subject" , nil, class: "form-control-r" , placeholder: "subject line" %>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <textarea class="form-control-message" rows="5" id="comment" placeholder="your message"></textarea>
+                    <!-- <textarea class="form-control-message" rows="5" id="comment" placeholder="your message"></textarea> -->
+                    <%= text_area_tag "message" , nil, class: "form-control-message" , placeholder: "your message" , rows: 5 %>
                 </div>
             </div>
             <div class="row">
@@ -36,5 +41,6 @@ PrayWhere.com does not guarantee the accuracy of the information provided here. 
                     <input id="email" class="form-login" type="submit" value="submit" placeholder="">
                 </div>
             </div>
+            <% end %>
         </div>
     </div>
