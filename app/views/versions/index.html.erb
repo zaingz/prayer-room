@@ -69,7 +69,13 @@
     <article class="prodect-item">
       <div class="row">
         <div class="col-md-4 col-sm-6 col-xs-12">
-          <div class="photo"> <img src="<%= version.photos.first.image_url %>" width="305" height="263" alt="image descration"> </div>
+          <div class="photo"> 
+          <% if version.photos.first.cloud == false%>
+          <img src="<%= version.photos.first.photo_url %>" width="305" height="263" alt="image descration">
+          <% else %>
+          <img src="<%= version.photos.first.image_url %>" width="305" height="263" alt="image descration">
+          <% end %>
+          </div>
         </div>
         <div class="col-md-8 col-sm-6 col-xs-12">
           <div class="item-detail">
